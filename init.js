@@ -1,3 +1,7 @@
+// Artwork
+import Artwork from './js/artwork.js';
+new Artwork();
+
 // Auto Copyright
 import AutoCopyright from './js/autoCopyright.js';
 new AutoCopyright(2007, 'Osano Naoko');

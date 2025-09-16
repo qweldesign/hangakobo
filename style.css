@@ -617,6 +617,29 @@ button, input, select, textarea {
 }
 
 /**
+ * Project - Hero
+ */
+.hero {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 6rem);
+  margin-top: 3rem;
+}
+.hero__artwork {
+  width: min(83.33vw, 30rem);
+  height: min(83.33vh, 30rem);
+}
+.hero__artwork img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+/**
  * Project - Main
  */
 .main {
