@@ -10,6 +10,10 @@ new AutoCopyright(2007, 'Osano Naoko');
 import BackToTop from './js/backToTop.js';
 new BackToTop();
 
+// Clock
+import Clock from './js/clock.js';
+new Clock();
+
 // Drawer Menu
 import DrawerMenu from './js/drawerMenu.js';
 new DrawerMenu();

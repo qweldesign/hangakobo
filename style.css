@@ -969,6 +969,106 @@ button, input, select, textarea {
   }
 }
 
+/*
+ * Project - Clock
+ */
+@media (min-width: 800px) {
+  .clock {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+.clock__base {
+  position: relative;
+  width: 100%;
+  padding-inline: var(--container-pad--sm);
+  padding: 0;
+}
+@media (min-width: 800px) {
+  .clock__base {
+    flex-grow: 0;
+    flex-shrink: 5;
+    flex-basis: 30rem;
+  }
+}
+@media (min-width: 800px) {
+  .clock__base {
+    order: 1;
+  }
+}
+.clock__image {
+  box-shadow: 36px 18px 18px rgba(0, 0, 0, 0.3);
+}
+.clock__main {
+  position: absolute;
+  top: 34.5%;
+  left: 25.75%;
+}
+.clock__balloon {
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  width: 15.75rem;
+  height: 9rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+}
+@media (min-width: 800px) {
+  .clock__balloon {
+    top: -3rem;
+    left: -25%;
+    width: 21rem;
+    height: 12rem;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}
+.clock__balloon canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.85;
+}
+.clock__balloon p {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 100%;
+  font-family: sans-serif;
+}
+.clock__section {
+  width: 100%;
+  padding-inline: var(--container-pad--sm);
+  width: 100%;
+  padding-inline: var(--container-pad--sm);
+}
+@media (min-width: 800px) {
+  .clock__section {
+    flex-grow: 0;
+    flex-shrink: 4;
+    flex-basis: 24rem;
+  }
+}
+@media (min-width: 1000px) {
+  .clock__section {
+    flex-grow: 0;
+    flex-shrink: 5;
+    flex-basis: 30rem;
+  }
+}
+@media (min-width: 800px) {
+  .clock__section {
+    order: 0;
+  }
+}
+.clock__description {
+  font-size: var(--small-font-size);
+  line-height: var(--small-line-height);
+  letter-spacing: var(--small-letter-spacing);
+}
+
 /**
  * Utility - Spacing
  */

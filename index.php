@@ -143,6 +143,32 @@ $posts2 = array_slice($posts2, 0, 3);
           </div>
         </div>
       </section>
+      <section id="products" class="section">
+        <div class="section__container">
+          <h2 class="section__title">商品のご案内</h2>
+          <div id="clock" class="clock">
+            <div id="clockBase" class="clock__base">
+              <img id="clockImage" class="clock__image" src="/assets/clockImage.jpg">
+              <canvas id="clockMain" class="clock__main" width="240" height="240"></canvas>
+              <div id="clockBalloon" class="clock__balloon"></div>
+            </div>
+            <div class="clock__section">
+              <h3>腹時計</h3>
+              <div class="clock__description">
+                <p>「ねこさん、ねこさん、風呂敷下げてどこ行くの？」
+                  <br>「風にまかせて、気分にまかせて、どこまでも。
+                  <br>お腹の時計がグーッと鳴ったら、
+                  <br>そこでお弁当広げて食べるのさ。」</p>
+                <p>木版画らしい猫の毛並みや目つきが特徴的な一品。
+                  <br>毎日の時を刻む、暮らしの相棒。</p>
+              </div>
+              <div class="clock__more">
+                <a class="button button--primary button--sm my-medium" href="https://www.iichi.com/listing/item/340160" target="_blank" rel="noopener">商品ページを見る</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <div class="cover"></div>
     <footer id="footer" class="footer">
