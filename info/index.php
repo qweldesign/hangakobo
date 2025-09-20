@@ -3,7 +3,7 @@ require_once dirname(__DIR__) . '/inc/blog.php';
 require_once dirname(__DIR__) . '/inc/parsedown.php';
 $Parsedown = new Parsedown();
 
-$dir   = dirname(__DIR__) . '/content/letters/';
+$dir   = dirname(__DIR__) . '/content/info/';
 $slug  = $_GET['slug'] ?? null;
 $count = (int)($_GET['count'] ?? 10);
 $page  = (int)($_GET['page'] ?? 1);
@@ -26,7 +26,7 @@ if ($slug) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>越前海岸からの版画ゆうびん | 版画ゆうびん舎</title>
+    <title>お知らせ | 版画ゆうびん舎</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
@@ -64,8 +64,8 @@ if ($slug) {
     </header>
     <main id="main" class="main">
       <header class="main__header">
-        <h1 class="main__title">版画ゆうびん</h1>
-        <p class="main__lead">おさのなおこが綴る越前海岸からの版画の便り</p>
+        <h1 class="main__title">お知らせ</h1>
+        <p class="main__lead">展示会の予定・制作実績など</p>
       </header>
       <ul id="breadcrumb" class="breadcrumb">
         <li class="breadcrumb__item">
@@ -73,24 +73,24 @@ if ($slug) {
         </li>
         <?php if ($slug !== 'about' && $post) { ?>
           <li class="breadcrumb__item">
-            <a href="/letters/">版画ゆうびん</a>
+            <a href="/info/">お知らせ</a>
           </li>
           <li class="breadcrumb__item is-current">
             <span><?php echo $post['title']; ?></span>
           </li>
         <?php } else { ?>
           <li class="breadcrumb__item is-current">
-            <span>版画ゆうびん</span>
+            <span>お知らせ</span>
           </li>
         <?php } ?>
       </ul>
       <div class="main__content">
         <?php if (!$slug) { ?>
-          <ul class="postList postList--list">
+          <ul class="postList postList--list is-switched">
             <?php foreach ($posts as $post) { ?>
               <li class="postList__item postItem">
                 <figure class="postItem__image">
-                  <a href="/letters/<?php echo $post['slug']; ?>/">
+                  <a href="/info/<?php echo $post['slug']; ?>/">
                     <img src="<?php echo $post['img'] ?>">
                   </a>
                 </figure>
@@ -99,13 +99,13 @@ if ($slug) {
                     <div class=postItem__date><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
                   </div>
                   <h3 class="postItem__heading">
-                    <a href="/letters/<?php echo $post['slug']; ?>/">
+                    <a href="/info/<?php echo $post['slug']; ?>/">
                       <?php echo $post['title']; ?>
                     </a>
                   </h3>
                   <p class="postItem__excerpt">
                     <?php echo $post['summary']; ?>
-                    <a class="postItem__more" href="/letters/<?php echo $post['slug']; ?>/">もっと詳しく &gt;</a>
+                    <a class="postItem__more" href="/info/<?php echo $post['slug']; ?>/">もっと詳しく &gt;</a>
                   </p>
                 </div>
               </li>
@@ -117,11 +117,11 @@ if ($slug) {
             <?php echo $Parsedown->text($content); ?>
           </article>
           <aside class="main__aside">
-            <h2 class="main__heading">最新の版画ゆうびん</h2>
+            <h2 class="main__heading">最新のお知らせ</h2>
             <ul class="postIndex">
               <?php foreach ($posts as $post) { ?>
                 <li class="postIndex__item">
-                  <a href="/letters/<?php echo $post['slug']; ?>/">
+                  <a href="/info/<?php echo $post['slug']; ?>/">
                     <img class="postIndex__image" src="<?php echo $post['img']; ?>">
                     <span class="postIndex__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></span>
                     <span class="postIndex__title"><?php echo $post['title']; ?></span>

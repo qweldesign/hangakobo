@@ -73,7 +73,7 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--color--lightest);
+  background-color: hsl(45, 50%, 90%);
   color: var(--color--darkest);
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-base);
@@ -335,7 +335,7 @@ button, input, select, textarea {
   transition: background-color 0.25s ease;
 }
 .backToTop > .icon > .icon__span, .backToTop > .icon > .icon__span::before, .backToTop > .icon > .icon__span::after {
-  border-color: var(--color--lightest);
+  border-color: hsl(45, 50%, 90%);
 }
 .backToTop:hover > .icon {
   background-color: var(--color--primary--active);
@@ -391,7 +391,7 @@ button, input, select, textarea {
 }
 .button--primary, .button--primary:active {
   background-color: var(--color--primary);
-  color: var(--color--lightest);
+  color: hsl(45, 50%, 90%);
 }
 .button--primary:hover, .button--primary:focus {
   background-color: var(--color--primary--active);
@@ -469,7 +469,7 @@ button, input, select, textarea {
   transition: background-color 0.25s ease;
 }
 .drawer__navicon > .icon > .icon__span, .drawer__navicon > .icon > .icon__span::before, .drawer__navicon > .icon > .icon__span::after {
-  border-color: var(--color--lightest);
+  border-color: hsl(45, 50%, 90%);
 }
 .drawer__navicon:hover > .icon {
   background-color: var(--color--primary--active);
@@ -496,7 +496,7 @@ button, input, select, textarea {
   transition: background-color 0.25s ease;
 }
 .drawer__close > .icon > .icon__span, .drawer__close > .icon > .icon__span::before, .drawer__close > .icon > .icon__span::after {
-  border-color: var(--color--lightest);
+  border-color: hsl(45, 50%, 90%);
 }
 .drawer__close:hover > .icon {
   background-color: var(--color--primary);
@@ -561,8 +561,8 @@ button, input, select, textarea {
   display: block;
   padding-block: var(--spacing--x-small);
   padding-inline-start: 20%;
-  color: var(--color--lightest);
-  fill: var(--color--lightest);
+  color: hsl(45, 50%, 90%);
+  fill: hsl(45, 50%, 90%);
   text-decoration: none;
   transition: all 0.25s ease;
 }
@@ -655,6 +655,78 @@ button, input, select, textarea {
 .main__title {
   font-size: var(--font-size--x-large);
 }
+.main__heading {
+  font-size: var(--font-size--large);
+}
+.main__content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 6rem;
+}
+.main__article {
+  width: min(100%, 36rem);
+  margin-inline: auto;
+}
+.main__article p:has(img) {
+  text-align: center;
+}
+@media (min-width: 800px) {
+  .main__article p:has(img) {
+    height: min(80vw, 24rem);
+    overflow: hidden;
+  }
+  .main__article p:has(img) img:not(.img-full) {
+    display: inline-block;
+    width: auto;
+    height: 100%;
+  }
+}
+.main__article ul:has(img) {
+  list-style: none;
+  padding-inline-start: 0;
+  text-align: center;
+}
+.main__article li:has(img) {
+  display: inline-block;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: min(40vw, 12rem);
+  margin-inline: var(--spacing--medium);
+}
+.main__article li:has(img) img {
+  display: inline-block;
+  width: auto;
+  height: 100%;
+}
+.main__article .img-full {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: var(--spacing--medium) auto;
+}
+.main__article video {
+  display: block;
+  width: min(100%, 36rem);
+  height: auto;
+  margin: var(--spacing--medium) auto;
+}
+.main__date {
+  margin-block: var(--spacing--small);
+}
+.main__date + h2 {
+  margin-block: var(--spacing--small);
+}
+.main aside {
+  width: min(100%, 24rem);
+  margin-inline: auto;
+}
+@media (min-width: 1000px) {
+  .main aside {
+    width: 12rem;
+  }
+}
 
 /**
  * Project - Post List
@@ -740,6 +812,15 @@ button, input, select, textarea {
   display: block;
   text-align: right;
 }
+.postList.is-switched .postItem__image {
+  order: 2;
+}
+.postList.is-switched .postItem__content {
+  order: 1;
+}
+.postList.is-switched .postItem__more {
+  text-align: left;
+}
 
 /**
  * Project - Post Item
@@ -792,16 +873,42 @@ button, input, select, textarea {
 }
 
 /**
- * Project - Featured Image
+ * Project - Post Index
  */
-.featuredImage {
-  height: min(80vw, 24rem);
+.postIndex {
+  list-style: none;
+  padding-inline-start: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--spacing--medium);
 }
-.featuredImage img {
+.postIndex > * {
+  flex: 1 1 40%;
+}
+@media (min-width: 1000px) {
+  .postIndex {
+    display: block;
+  }
+}
+.postIndex__item {
   display: block;
-  width: auto;
-  height: 100%;
-  margin-inline: auto;
+  margin: var(--spacing--medium) auto;
+}
+@media (min-width: 1000px) {
+  .postIndex__item {
+    margin-block-end: var(--spacing--large);
+  }
+}
+.postIndex__image {
+  margin-block-end: var(--spacing--small);
+}
+.postIndex__date, .postIndex__title {
+  display: block;
+  margin-block-end: var(--spacing--x-small);
+  font-size: var(--font-size--small);
+  line-height: 1;
 }
 
 /**

@@ -78,4 +78,20 @@
       }
     }
   }
+
+  &.is-switched {
+    .postItem{
+      &__image {
+        order: 2;
+      }
+
+      &__content {
+        order: 1;
+      }
+
+      &__more {
+        text-align: left;
+      }
+    }
+  }
 }

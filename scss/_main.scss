@@ -14,4 +14,82 @@
   &__title {
     font-size: font-size("x-large");
   }
+
+  &__heading {
+    font-size: font-size("large");
+  }
+
+  &__content {
+    @include row(flex-start, flex-start);
+    gap: 6rem;
+  }
+
+  &__article {
+    width: min(100%, 36rem);
+    margin-inline: auto;
+
+    p:has(img) {
+      text-align: center;
+
+      @media (min-width: breakpoint("md")) {
+        height: min(80vw, 24rem);
+        overflow: hidden;
+
+        img:not(.img-full) {
+          display: inline-block;
+          width: auto;
+          height: 100%;
+        }        
+      }
+    }
+
+    ul:has(img) {
+      @include list-unstyled();
+      text-align: center;
+    }
+
+    li:has(img) {
+      display: inline-block;
+      width: fit-content;
+      height: min(40vw, 12rem);
+      margin-inline: space("medium");
+      
+      img {
+        display: inline-block;
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    .img-full {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: space("medium") auto;
+    }
+
+    video {
+      display: block;
+      width: min(100%, 36rem);
+      height: auto;
+      margin: space("medium") auto;
+    }
+  }
+
+  &__date {
+    margin-block: space();
+
+    + h2 {
+      margin-block: space();
+    }
+  }
+
+  aside {
+    width: min(100%, 24rem);
+    margin-inline: auto;
+
+    @media (min-width: breakpoint("lg")) {
+      width: 12rem;
+    }
+  }
 }

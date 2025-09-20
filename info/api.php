@@ -2,7 +2,7 @@
 
 include_once dirname(__DIR__) . '/inc/blog.php';
 
-$dir   = dirname(__DIR__) . '/content/letters/';
+$dir   = dirname(__DIR__) . '/content/info/';
 $count = (int)($_GET['count'] ?? 10);
 $page  = (int)($_GET['page'] ?? 1);
 
