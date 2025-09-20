@@ -1,0 +1,49 @@
+/**
+ * Form
+ */
+
+.form {
+  @include form();
+
+  &__table {
+    width: min(100%, 48rem);
+    margin: space("medium") auto;
+
+    thead, tbody {
+      width: 100%;
+    }
+
+    thead {
+      border: 0; // Reset
+    }
+
+    th, td {
+      padding: space();
+      border: 0; // Reset
+    }
+
+    th {
+      width: 12rem;
+    }
+
+    @media (max-width: breakpoint("sm") - 0.1px) {
+      &, thead, tbody, tr, th, td {
+        display: block;
+      }
+    }
+  }
+
+  &__buttons {
+    @include row(center);
+
+    [type="submit"] {
+      @include button("primary", 10.5rem);
+      margin-inline: space("medium");
+    }
+
+    [type="button"] {
+      @include button("secondary", 10.5rem);
+      margin-inline: space("medium");
+    }
+  }
+}

@@ -33,10 +33,10 @@ $posts = load_all_articles($dir);
             <li class="gNav__menuItem"><a href="/letters/">版画ゆうびん</a></li>
             <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
-            <li class="gNav__menuItem"><a href="/products/">商品のご案内</a></li>
+            <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
             <li class="gNav__menuItem"><a href="/gallery/">ギャラリー</a></li>
             <li class="gNav__menuItem"><a href="/workshop/">版画教室</a></li>
-            <li class="gNav__menuItem"><a href="/cotact/">お問い合わせ</a></li>
+            <li class="gNav__menuItem"><a href="/#contact">お問い合わせ</a></li>
           </ul>
           <ul class="gNav__socialMenu">
             <li class="gNav__menuItem gNav__menuItem--social">

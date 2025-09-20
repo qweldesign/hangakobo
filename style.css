@@ -23,6 +23,8 @@
   --color--lightest--active: #cccccc;
   --color--primary: hsl(220, 100%, 30%);
   --color--primary--active: hsl(220, 100%, 70%);
+  --color--secondary: hsl(30, 85%, 50%);
+  --color--secondary--active: hsl(30, 85%, 90%);
   --container-width--sm: 600px;
   --container-width--md: 800px;
   --container-width--lg: 1000px;
@@ -399,6 +401,17 @@ button, input, select, textarea {
 }
 .button--primary:hover, .button--primary:focus {
   box-shadow: 0 0 var(--spacing--small) var(--color--primary);
+}
+.button--secondary, .button--secondary:active {
+  background-color: var(--color--secondary);
+  color: hsl(45, 50%, 90%);
+}
+.button--secondary:hover, .button--secondary:focus {
+  background-color: var(--color--secondary--active);
+  color: var(--color--darkest);
+}
+.button--secondary:hover, .button--secondary:focus {
+  box-shadow: 0 0 var(--spacing--small) var(--color--secondary);
 }
 .button--sm {
   display: block;
@@ -1067,6 +1080,130 @@ button, input, select, textarea {
   font-size: var(--small-font-size);
   line-height: var(--small-line-height);
   letter-spacing: var(--small-letter-spacing);
+}
+
+/**
+ * Form
+ */
+.form label {
+  display: block;
+}
+.form label span.is-required {
+  color: var(--color--secondary);
+  font-size: var(--small-font-size);
+  line-height: var(--small-line-height);
+  letter-spacing: var(--small-letter-spacing);
+}
+.form input[type=text], .form input[type=tel], .form input[type=url], .form input[type=email], .form input[type=password], .form input[type=file], .form select, .form optgroup, .form textarea {
+  display: block;
+  width: 100%;
+  padding: var(--spacing--x-small);
+}
+.form input[type=file] {
+  outline: 0;
+}
+.form textarea {
+  resize: vertical;
+}
+.form__table {
+  width: min(100%, 48rem);
+  margin: var(--spacing--medium) auto;
+}
+.form__table thead, .form__table tbody {
+  width: 100%;
+}
+.form__table thead {
+  border: 0;
+}
+.form__table th, .form__table td {
+  padding: var(--spacing--small);
+  border: 0;
+}
+.form__table th {
+  width: 12rem;
+}
+@media (max-width: 599.9px) {
+  .form__table, .form__table thead, .form__table tbody, .form__table tr, .form__table th, .form__table td {
+    display: block;
+  }
+}
+.form__buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+.form__buttons [type=submit] {
+  display: block;
+  width: 10.5rem;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  margin-inline: auto;
+  margin-inline: var(--spacing--medium);
+}
+.form__buttons [type=submit], .form__buttons [type=submit]:active {
+  border: 0;
+  border-radius: var(--spacing--x-small);
+  text-align: center;
+  text-decoration: none;
+  word-break: break-word;
+  outline: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.form__buttons [type=submit]:hover, .form__buttons [type=submit]:focus {
+  text-decoration: none;
+  transform: scale(96%);
+}
+.form__buttons [type=submit], .form__buttons [type=submit]:active {
+  background-color: var(--color--primary);
+  color: hsl(45, 50%, 90%);
+}
+.form__buttons [type=submit]:hover, .form__buttons [type=submit]:focus {
+  background-color: var(--color--primary--active);
+  color: var(--color--darkest);
+}
+.form__buttons [type=submit]:hover, .form__buttons [type=submit]:focus {
+  box-shadow: 0 0 var(--spacing--small) var(--color--primary);
+}
+.form__buttons [type=button] {
+  display: block;
+  width: 10.5rem;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  margin-inline: auto;
+  margin-inline: var(--spacing--medium);
+}
+.form__buttons [type=button], .form__buttons [type=button]:active {
+  border: 0;
+  border-radius: var(--spacing--x-small);
+  text-align: center;
+  text-decoration: none;
+  word-break: break-word;
+  outline: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.form__buttons [type=button]:hover, .form__buttons [type=button]:focus {
+  text-decoration: none;
+  transform: scale(96%);
+}
+.form__buttons [type=button], .form__buttons [type=button]:active {
+  background-color: var(--color--secondary);
+  color: hsl(45, 50%, 90%);
+}
+.form__buttons [type=button]:hover, .form__buttons [type=button]:focus {
+  background-color: var(--color--secondary--active);
+  color: var(--color--darkest);
+}
+.form__buttons [type=button]:hover, .form__buttons [type=button]:focus {
+  box-shadow: 0 0 var(--spacing--small) var(--color--secondary);
 }
 
 /**

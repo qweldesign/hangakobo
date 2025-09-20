@@ -36,10 +36,10 @@ $posts2 = array_slice($posts2, 0, 3);
             <li class="gNav__menuItem"><a href="/letters/">版画ゆうびん</a></li>
             <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
-            <li class="gNav__menuItem"><a href="/products/">商品のご案内</a></li>
+            <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
             <li class="gNav__menuItem"><a href="/gallery/">ギャラリー</a></li>
             <li class="gNav__menuItem"><a href="/workshop/">版画教室</a></li>
-            <li class="gNav__menuItem"><a href="/cotact/">お問い合わせ</a></li>
+            <li class="gNav__menuItem"><a href="/#contact">お問い合わせ</a></li>
           </ul>
           <ul class="gNav__socialMenu">
             <li class="gNav__menuItem gNav__menuItem--social">
@@ -169,6 +169,39 @@ $posts2 = array_slice($posts2, 0, 3);
           </div>
         </div>
       </section>
+      <section id="contact" class="section">
+        <div class="section__container">
+          <h2 class="section__title">お問い合わせ</h2>
+          <p class="text-center">ご質問・ご相談などございましたら、下記のフォームよりお気軽にお問い合わせください。</p>
+          <form class="form" action="/inc/mail.php" method="POST">
+            <table class="form__table">
+              <tr>
+                <th><label for="yourname">氏名<span class="is-required">*必須</span></label></th>
+                <td><input id="yourname" size="30" type="text" name="氏名" required></td>
+              </tr>
+              <tr>
+                <th><label for="youremail">メールアドレス<span class="is-required">*必須</span></label></th>
+                <td><input id="youremail" size="30" type="email" name="Email" required></td>
+              </tr>
+              <tr>
+                <th><label for="yoursubject">題名</label></th>
+                <td>
+                  <select id="yoursubject" name="題名">
+                    <option value="ご質問・お問い合わせ">ご質問・お問い合わせ</option>
+                    <option value="その他">その他</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th><label for="yourcontent">メッセージ本文</label></th>
+                <td><textarea id="yourcontent" name="メッセージ本文" cols="30" rows="6"></textarea></td>
+              </tr>
+            </table>
+            <div class="form__buttons">
+              <input class="button button--primary button--sm my-medium" type="submit" value="確認">
+            </div>
+          </form>
+        </div>
     </main>
     <div class="cover"></div>
     <footer id="footer" class="footer">
