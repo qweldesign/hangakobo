@@ -669,6 +669,9 @@ button, input, select, textarea {
   width: min(100%, 36rem);
   margin-inline: auto;
 }
+.main__article p {
+  text-align: justify;
+}
 .main__article p:has(img) {
   text-align: center;
 }
@@ -909,6 +912,45 @@ button, input, select, textarea {
   margin-block-end: var(--spacing--x-small);
   font-size: var(--font-size--small);
   line-height: 1;
+}
+
+/**
+ * Project - Media Text
+ */
+.mediaText {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-block: var(--spacing--large);
+}
+.mediaText__title::before {
+  content: "◎ ";
+}
+.mediaText__media, .mediaText__content {
+  flex: 1 1 100%;
+  padding: 0 var(--spacing--medium);
+}
+@media (min-width: 800px) {
+  .mediaText__media, .mediaText__content {
+    flex: 1 1 50%;
+  }
+}
+.mediaText__media > img {
+  display: block;
+  width: min(60vw, 18rem);
+  height: min(80vw, 24rem);
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-inline: auto;
+}
+.mediaText__content > p {
+  text-align: justify;
+}
+@media (min-width: 800px) {
+  .mediaText:nth-child(even) {
+    flex-direction: row-reverse;
+  }
 }
 
 /**

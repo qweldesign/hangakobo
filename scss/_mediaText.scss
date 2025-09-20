@@ -1,0 +1,43 @@
+/**
+ * Project - Media Text
+ */
+
+.mediaText {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-block: space("large");
+
+  &__title::before {
+    content: "◎ "
+  }
+
+  &__media,
+  &__content {
+    flex: 1 1 100%;
+    padding: 0 space("medium");
+
+    @media (min-width: breakpoint("md")) {
+      flex: 1 1 50%;
+    }
+  }
+
+  &__media > img {
+    display: block;
+    width: min(60vw, 18rem);
+    height: min(80vw, 24rem);
+    object-fit: contain;
+    margin-inline: auto;
+  }
+
+  &__content > p {
+    text-align: justify;
+  }
+
+  &:nth-child(even) {
+    @media (min-width: breakpoint("md")) {
+      flex-direction: row-reverse;
+    }
+  }
+}

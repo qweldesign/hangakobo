@@ -28,6 +28,10 @@
     width: min(100%, 36rem);
     margin-inline: auto;
 
+    p {
+      text-align: justify;
+    }
+
     p:has(img) {
       text-align: center;
 
