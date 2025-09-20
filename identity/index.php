@@ -34,8 +34,8 @@ $posts = load_all_articles($dir);
             <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
-            <li class="gNav__menuItem"><a href="/gallery/">ギャラリー</a></li>
-            <li class="gNav__menuItem"><a href="/workshop/">版画教室</a></li>
+            <li class="gNav__menuItem"><a href="/#gallery">ギャラリー</a></li>
+            <li class="gNav__menuItem"><a href="/#links">リンク集</a></li>
             <li class="gNav__menuItem"><a href="/#contact">お問い合わせ</a></li>
           </ul>
           <ul class="gNav__socialMenu">
@@ -67,7 +67,7 @@ $posts = load_all_articles($dir);
             <?php foreach ($posts as $post) { ?>
               <section class="mediaText">
                 <figure class="mediaText__media">
-                  <img class="img-fixed" src="<?php echo $post['img'] ?>">
+                  <img loading="razy" class="img-fixed" src="<?php echo $post['img'] ?>">
                 </figure>
                 <div class="mediaText__content">
                   <h2 class="mediaText__title"><?php echo $post['title']; ?></h2>

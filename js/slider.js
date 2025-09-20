@@ -158,20 +158,20 @@ export default class Slider {
     this.next.appendChild(icon);
 
     // .slider__nav
-    this.nav = document.createElement('ul');
-    this.nav.classList.add('slider__nav');
+    //this.nav = document.createElement('ul');
+    //this.nav.classList.add('slider__nav');
 
     // .slider__navItem
-    for (let i = 0; i < this.itemsCount; i++) {
-      const li = document.createElement('li');
-      li.classList.add('slider__navItem');
-      li.dataset.targetIndex = i; // data-target-indexを挿入
-      this.nav.appendChild(li);
-    }
+    //for (let i = 0; i < this.itemsCount; i++) {
+    //  const li = document.createElement('li');
+    //  li.classList.add('slider__navItem');
+    //  li.dataset.targetIndex = i; // data-target-indexを挿入
+    //  this.nav.appendChild(li);
+    //}
 
     this.elem.appendChild(this.prev);
     this.elem.appendChild(this.next);
-    this.elem.after(this.nav);
+    //this.elem.after(this.nav);
   }
 
   // アイテムが7個未満の場合に予備を連ねておく
@@ -192,11 +192,11 @@ export default class Slider {
     }
     this.items[this.currentIndex].classList.add('is-current');
     // ナビゲーション
-    if (this.nav.querySelector('.is-current')) {
-      this.nav.querySelector('.is-current').classList.remove('is-current');
-    }
-    this.navItems = this.nav.children;
-    this.navItems[this.currentIndex % this.itemsCount].classList.add('is-current');
+    //if (this.nav.querySelector('.is-current')) {
+    //  this.nav.querySelector('.is-current').classList.remove('is-current');
+    //}
+    //this.navItems = this.nav.children;
+    //this.navItems[this.currentIndex % this.itemsCount].classList.add('is-current');
   }
 
   handleEvents() {
@@ -280,13 +280,13 @@ export default class Slider {
     });
 
     // ナビゲーション操作
-    this.nav.addEventListener(myTouch, (event) => {
-      const target = event.target;
-      if (target.dataset.targetIndex) {
-        this.move(target.dataset.targetIndex - this.currentIndex % this.itemsCount);
-        this.stopInterval();
-      }
-    });
+    //this.nav.addEventListener(myTouch, (event) => {
+    //  const target = event.target;
+    //  if (target.dataset.targetIndex) {
+    //    this.move(target.dataset.targetIndex - this.currentIndex % this.itemsCount);
+    //    this.stopInterval();
+    //  }
+    //});
 
     // 前ボタン
     this.prev.addEventListener(myTouch, (event) => {

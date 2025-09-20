@@ -630,6 +630,81 @@ button, input, select, textarea {
 }
 
 /**
+ * Component - Slider
+ */
+.slider {
+  position: relative;
+  width: 100%;
+  height: calc(83.33vmin / 0.5);
+  overflow: hidden;
+}
+@media (min-width: 800px) {
+  .slider {
+    height: 36rem;
+  }
+}
+.slider__inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-block: 0;
+  transform: translateX(0);
+}
+.slider__item {
+  position: relative;
+  flex: 0 1 auto;
+  order: 0;
+  margin-inline: 0;
+  opacity: 1;
+  transition: opacity 0.15s linear;
+}
+.slider__item:not(.is-current) {
+  opacity: 0.5;
+}
+.slider__caption {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: var(--spacing--small) var(--spacing--medium);
+  font-size: var(--small-font-size);
+  line-height: var(--small-line-height);
+  letter-spacing: var(--small-letter-spacing);
+  text-align: center;
+  word-break: keep-all;
+}
+.slider__prev, .slider__next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: block;
+  height: 2.25rem;
+  margin: auto;
+  border: 0;
+  text-align: center;
+}
+.slider__prev > .icon, .slider__next > .icon {
+  border-radius: 50%;
+  background-color: var(--color--primary);
+  transition: background-color 0.25s ease;
+}
+.slider__prev > .icon > .icon__span, .slider__prev > .icon > .icon__span::before, .slider__prev > .icon > .icon__span::after, .slider__next > .icon > .icon__span, .slider__next > .icon > .icon__span::before, .slider__next > .icon > .icon__span::after {
+  border-color: hsl(45, 50%, 90%);
+}
+.slider__prev:hover > .icon, .slider__next:hover > .icon {
+  background-color: var(--color--primary--active);
+}
+.slider__prev:hover > .icon > .icon__span, .slider__prev:hover > .icon > .icon__span::before, .slider__prev:hover > .icon > .icon__span::after, .slider__next:hover > .icon > .icon__span, .slider__next:hover > .icon > .icon__span::before, .slider__next:hover > .icon > .icon__span::after {
+  border-color: var(--color--darkest);
+}
+.slider__prev {
+  left: 2%;
+}
+.slider__next {
+  right: 2%;
+}
+
+/**
  * Project - Hero
  */
 .hero {

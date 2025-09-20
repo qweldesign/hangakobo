@@ -9,6 +9,10 @@ $posts2 = load_all_articles($dir2);
 $posts1 = array_slice($posts1, 0, 3);
 $posts2 = array_slice($posts2, 0, 3);
 
+$json     = file_get_contents(__DIR__ . '/content/artworks.json');
+$artworks = json_decode($json, true);
+$artworks = array_reverse($artworks);
+
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +41,8 @@ $posts2 = array_slice($posts2, 0, 3);
             <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
-            <li class="gNav__menuItem"><a href="/gallery/">ギャラリー</a></li>
-            <li class="gNav__menuItem"><a href="/workshop/">版画教室</a></li>
+            <li class="gNav__menuItem"><a href="/#gallery">ギャラリー</a></li>
+            <li class="gNav__menuItem"><a href="/#links">リンク集</a></li>
             <li class="gNav__menuItem"><a href="/#contact">お問い合わせ</a></li>
           </ul>
           <ul class="gNav__socialMenu">
@@ -67,7 +71,7 @@ $posts2 = array_slice($posts2, 0, 3);
               <li class="postList__item postItem">
                 <figure class="postItem__image">
                   <a href="/letters/<?php echo $post['slug']; ?>/">
-                    <img src="<?php echo $post['img'] ?>">
+                    <img loading="razy" src="<?php echo $post['img'] ?>">
                   </a>
                 </figure>
                 <div class="postItem__content">
@@ -97,7 +101,7 @@ $posts2 = array_slice($posts2, 0, 3);
           <h2 class="section__title">制作に寄せて</h2>
           <div class="mediaText">
             <figure class="mediaText__media">
-              <img src="/content/artworks/artworkM094s.png" alt="至上善">
+              <img loading="razy" src="/content/artworks/artworkM094s.png" alt="至上善">
             </figure>
             <div class="mediaText__content">
               <p>版画のモチーフは、
@@ -118,7 +122,7 @@ $posts2 = array_slice($posts2, 0, 3);
               <li class="postList__item postItem">
                 <figure class="postItem__image">
                   <a href="/letters/<?php echo $post['slug']; ?>/">
-                    <img src="<?php echo $post['img'] ?>">
+                    <img loading="razy" src="<?php echo $post['img'] ?>">
                   </a>
                 </figure>
                 <div class="postItem__content">
@@ -148,7 +152,7 @@ $posts2 = array_slice($posts2, 0, 3);
           <h2 class="section__title">商品のご案内</h2>
           <div id="clock" class="clock">
             <div id="clockBase" class="clock__base">
-              <img id="clockImage" class="clock__image" src="/assets/clockImage.jpg">
+              <img loading="razy" id="clockImage" class="clock__image" src="/assets/clockImage.jpg">
               <canvas id="clockMain" class="clock__main" width="240" height="240"></canvas>
               <div id="clockBalloon" class="clock__balloon"></div>
             </div>
@@ -167,6 +171,23 @@ $posts2 = array_slice($posts2, 0, 3);
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section id="gallery" class="section">
+        <div class="section__container">
+          <h2 class="section__title">ギャラリー</h2>
+        </div>
+        <div class="slider" data-aspect-ratio="0.5" data-gap="144">
+          <figure class="slider__inner">
+            <?php foreach ($artworks as $artwork) { ?>
+              <?php if ($artwork['showOnGallery']) { ?>
+                <figure class="slider__item">
+                  <img class="slider__image" src="/content/artworks/<?php echo $artwork['name']; ?>s.png" alt="<?php echo $artwork['title']; ?>">
+                  <figcaption class="slider__caption"><?php echo $artwork['title']; ?></figcaption>
+                </figure>
+              <?php } ?>
+            <?php } ?>
+          </figure>
         </div>
       </section>
       <section id="contact" class="section">

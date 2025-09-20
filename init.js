@@ -43,5 +43,5 @@ new DrawerMenu();
 //new RevealOnScroll();
 
 // Slider
-//import Slider from './js/slider.js';
-//new Slider();
+import Slider from './js/slider.js';
+new Slider();

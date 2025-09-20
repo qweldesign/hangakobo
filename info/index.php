@@ -47,8 +47,8 @@ if ($slug) {
             <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
-            <li class="gNav__menuItem"><a href="/gallery/">ギャラリー</a></li>
-            <li class="gNav__menuItem"><a href="/workshop/">版画教室</a></li>
+            <li class="gNav__menuItem"><a href="/#gallery">ギャラリー</a></li>
+            <li class="gNav__menuItem"><a href="/#links">リンク集</a></li>
             <li class="gNav__menuItem"><a href="/#contact">お問い合わせ</a></li>
           </ul>
           <ul class="gNav__socialMenu">
@@ -92,7 +92,7 @@ if ($slug) {
                 <li class="postList__item postItem">
                   <figure class="postItem__image">
                     <a href="/info/<?php echo $post['slug']; ?>/">
-                      <img src="<?php echo $post['img'] ?>">
+                      <img loading="razy" src="<?php echo $post['img'] ?>">
                     </a>
                   </figure>
                   <div class="postItem__content">
@@ -123,7 +123,7 @@ if ($slug) {
                 <?php foreach ($posts as $post) { ?>
                   <li class="postIndex__item">
                     <a href="/info/<?php echo $post['slug']; ?>/">
-                      <img class="postIndex__image" src="<?php echo $post['img']; ?>">
+                      <img loading="razy" class="postIndex__image" src="<?php echo $post['img']; ?>">
                       <span class="postIndex__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></span>
                       <span class="postIndex__title"><?php echo $post['title']; ?></span>
                     </a>
