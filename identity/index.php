@@ -50,31 +50,33 @@ $posts = load_all_articles($dir);
       </div>
     </header>
     <main id="main" class="main">
-      <header class="main__header">
-        <h1 class="main__title">制作に寄せて</h1>
-      </header>
-      <ul id="breadcrumb" class="breadcrumb">
-        <li class="breadcrumb__item">
-          <a href="/">Top</a>
-        </li>
-        <li class="breadcrumb__item is-current">
-          <span>制作に寄せて</span>
-        </li>
-      </ul>
-      <div class="main__content">
-        <section class="main__section">
-          <?php foreach ($posts as $post) { ?>
-            <section class="mediaText">
-              <figure class="mediaText__media">
-                <img src="<?php echo $post['img'] ?>">
-              </figure>
-              <div class="mediaText__content">
-                <h2 class="mediaText__title"><?php echo $post['title']; ?></h2>
-                <?php echo $Parsedown->text($post['content']); ?>
-              </div>
-            </section>
-          <?php } ?>
-        </section>
+      <div class="main__container">
+        <header class="main__header">
+          <h1 class="main__title">制作に寄せて</h1>
+        </header>
+        <ul id="breadcrumb" class="breadcrumb">
+          <li class="breadcrumb__item">
+            <a href="/">Top</a>
+          </li>
+          <li class="breadcrumb__item is-current">
+            <span>制作に寄せて</span>
+          </li>
+        </ul>
+        <div class="main__content">
+          <section class="main__section">
+            <?php foreach ($posts as $post) { ?>
+              <section class="mediaText">
+                <figure class="mediaText__media">
+                  <img class="img-fixed" src="<?php echo $post['img'] ?>">
+                </figure>
+                <div class="mediaText__content">
+                  <h2 class="mediaText__title"><?php echo $post['title']; ?></h2>
+                  <?php echo $Parsedown->text($post['content']); ?>
+                </div>
+              </section>
+            <?php } ?>
+          </section>
+        </div>
       </div>
     </main>
     <div class="cover"></div>

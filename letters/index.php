@@ -63,74 +63,76 @@ if ($slug) {
       </div>
     </header>
     <main id="main" class="main">
-      <header class="main__header">
-        <h1 class="main__title">版画ゆうびん</h1>
-        <p class="main__lead">おさのなおこが綴る越前海岸からの版画の便り</p>
-      </header>
-      <ul id="breadcrumb" class="breadcrumb">
-        <li class="breadcrumb__item">
-          <a href="/">Top</a>
-        </li>
-        <?php if ($slug !== 'about' && $post) { ?>
+      <div class="main__container">
+        <header class="main__header">
+          <h1 class="main__title">版画ゆうびん</h1>
+          <p class="main__lead">おさのなおこが綴る越前海岸からの版画の便り</p>
+        </header>
+        <ul id="breadcrumb" class="breadcrumb">
           <li class="breadcrumb__item">
-            <a href="/letters/">版画ゆうびん</a>
+            <a href="/">Top</a>
           </li>
-          <li class="breadcrumb__item is-current">
-            <span><?php echo $post['title']; ?></span>
-          </li>
-        <?php } else { ?>
-          <li class="breadcrumb__item is-current">
-            <span>版画ゆうびん</span>
-          </li>
-        <?php } ?>
-      </ul>
-      <div class="main__content">
-        <?php if (!$slug) { ?>
-          <ul class="postList postList--list">
-            <?php foreach ($posts as $post) { ?>
-              <li class="postList__item postItem">
-                <figure class="postItem__image">
-                  <a href="/letters/<?php echo $post['slug']; ?>/">
-                    <img src="<?php echo $post['img'] ?>">
-                  </a>
-                </figure>
-                <div class="postItem__content">
-                  <div class="postItem__info">
-                    <div class=postItem__date><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
-                  </div>
-                  <h3 class="postItem__heading">
-                    <a href="/letters/<?php echo $post['slug']; ?>/">
-                      <?php echo $post['title']; ?>
-                    </a>
-                  </h3>
-                  <p class="postItem__excerpt">
-                    <?php echo $post['summary']; ?>
-                    <a class="postItem__more" href="/letters/<?php echo $post['slug']; ?>/">もっと詳しく &gt;</a>
-                  </p>
-                </div>
-              </li>
-            <?php } ?>
-          </ul>
-        <?php } else { ?>
-          <article class="main__article">
-            <div class="main__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
-            <?php echo $Parsedown->text($content); ?>
-          </article>
-          <aside class="main__aside">
-            <h2 class="main__heading">最新の版画ゆうびん</h2>
-            <ul class="postIndex">
+          <?php if ($slug !== 'about' && $post) { ?>
+            <li class="breadcrumb__item">
+              <a href="/letters/">版画ゆうびん</a>
+            </li>
+            <li class="breadcrumb__item is-current">
+              <span><?php echo $post['title']; ?></span>
+            </li>
+          <?php } else { ?>
+            <li class="breadcrumb__item is-current">
+              <span>版画ゆうびん</span>
+            </li>
+          <?php } ?>
+        </ul>
+        <div class="main__content">
+          <?php if (!$slug) { ?>
+            <ul class="postList postList--list">
               <?php foreach ($posts as $post) { ?>
-                <li class="postIndex__item">
-                  <a href="/letters/<?php echo $post['slug']; ?>/">
-                    <img class="postIndex__image" src="<?php echo $post['img']; ?>">
-                    <span class="postIndex__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></span>
-                    <span class="postIndex__title"><?php echo $post['title']; ?></span>
-                  </a>
+                <li class="postList__item postItem">
+                  <figure class="postItem__image">
+                    <a href="/letters/<?php echo $post['slug']; ?>/">
+                      <img src="<?php echo $post['img'] ?>">
+                    </a>
+                  </figure>
+                  <div class="postItem__content">
+                    <div class="postItem__info">
+                      <div class=postItem__date><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
+                    </div>
+                    <h3 class="postItem__heading">
+                      <a href="/letters/<?php echo $post['slug']; ?>/">
+                        <?php echo $post['title']; ?>
+                      </a>
+                    </h3>
+                    <p class="postItem__excerpt">
+                      <?php echo $post['summary']; ?>
+                      <a class="postItem__more" href="/letters/<?php echo $post['slug']; ?>/">もっと詳しく &gt;</a>
+                    </p>
+                  </div>
                 </li>
               <?php } ?>
             </ul>
-          </aside>
-        <?php } ?>
+          <?php } else { ?>
+            <article class="main__article">
+              <div class="main__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
+              <?php echo $Parsedown->text($content); ?>
+            </article>
+            <aside class="main__aside">
+              <h2 class="main__heading">最新の版画ゆうびん</h2>
+              <ul class="postIndex">
+                <?php foreach ($posts as $post) { ?>
+                  <li class="postIndex__item">
+                    <a href="/letters/<?php echo $post['slug']; ?>/">
+                      <img class="postIndex__image" src="<?php echo $post['img']; ?>">
+                      <span class="postIndex__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></span>
+                      <span class="postIndex__title"><?php echo $post['title']; ?></span>
+                    </a>
+                  </li>
+                <?php } ?>
+              </ul>
+            </aside>
+          <?php } ?>
+        </div>
       </div>
     </main>
     <div class="cover"></div>

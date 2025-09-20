@@ -625,8 +625,7 @@ button, input, select, textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 6rem);
-  margin-top: 3rem;
+  height: 100vh;
 }
 .hero__artwork {
   width: min(83.33vw, 30rem);
@@ -642,7 +641,7 @@ button, input, select, textarea {
 /**
  * Project - Main
  */
-.main {
+.main__container {
   width: min(100%, var(--container-width--lg));
   margin-inline: auto;
   padding-inline: var(--container-pad--lg);
@@ -729,6 +728,23 @@ button, input, select, textarea {
   .main aside {
     width: 12rem;
   }
+}
+
+/**
+ * Project - Section
+ */
+.section {
+  margin-block-end: var(--spacing--x-large);
+}
+.section__container {
+  width: min(100%, var(--container-width--lg));
+  margin-inline: auto;
+  padding-inline: var(--container-pad--lg);
+}
+.section__title {
+  margin-block: var(--spacing--medium);
+  border-block-end: 1px dotted var(--color--dark);
+  font-size: var(--font-size--large);
 }
 
 /**
@@ -936,7 +952,7 @@ button, input, select, textarea {
     flex: 1 1 50%;
   }
 }
-.mediaText__media > img {
+.mediaText__media > .img-fixed {
   display: block;
   width: min(60vw, 18rem);
   height: min(80vw, 24rem);

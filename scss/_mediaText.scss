@@ -23,7 +23,7 @@
     }
   }
 
-  &__media > img {
+  &__media > .img-fixed {
     display: block;
     width: min(60vw, 18rem);
     height: min(80vw, 24rem);

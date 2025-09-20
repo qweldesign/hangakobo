@@ -5,8 +5,7 @@
 .hero {
   @include row(center, center);
   width: 100%;
-  height: calc(100vh - #{$headerHeight});
-  margin-top: $headerHeight / 2;
+  height: 100vh;
 
   &__artwork {
     width: min(83.33vw, 30rem);

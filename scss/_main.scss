@@ -3,7 +3,9 @@
  */
 
 .main {
-  @include container();
+  &__container {
+    @include container();
+  }
 
   &__header {
     padding-block: space("large");
