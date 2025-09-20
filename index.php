@@ -3,9 +3,11 @@ require_once __DIR__ . '/inc/blog.php';
 
 $dir1   = __DIR__ . '/content/letters/';
 $dir2   = __DIR__ . '/content/info/';
+$dir3   = __DIR__ . '/content/links/';
 
 $posts1 = load_all_articles($dir1);
 $posts2 = load_all_articles($dir2);
+$links  = load_all_articles($dir3);
 $posts1 = array_slice($posts1, 0, 3);
 $posts2 = array_slice($posts2, 0, 3);
 
@@ -190,6 +192,28 @@ $artworks = array_reverse($artworks);
           </figure>
         </div>
       </section>
+      <section id="links" class="section">
+        <div class="section__container">
+          <h2 class="section__title">リンク集</h2>
+          <ul class="linkList">
+            <?php foreach ($links as $link) { ?>
+            <li class="linkList__item">
+              <a class="linkList__link" href="<?php echo $link['link']; ?>" target="_blank" rel="noopener" style="background-color:<?php echo $link['bg']; ?>;">
+                <div class="linkList__inner" style="border-color:<?php echo $link['color']; ?>;">
+                  <figure class="linkList__image">
+                    <img loading="razy" src="<?php echo $link['img']; ?>" alt="<?php echo $link['title']; ?>">
+                  </figure>
+                  <div class="linkList__content" style="color:<?php echo $link['color']; ?>;">
+                    <h3 class="linkList__title"><?php echo $link['title']; ?></h3>
+                    <p class="linkList__summary visible-sm"><?php echo $link['summary']; ?></p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <?php } ?>
+          <ul>
+        </div>
+      </section>  
       <section id="contact" class="section">
         <div class="section__container">
           <h2 class="section__title">お問い合わせ</h2>

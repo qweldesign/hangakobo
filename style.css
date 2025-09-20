@@ -1158,6 +1158,66 @@ button, input, select, textarea {
 }
 
 /**
+ * Project - Link List
+ */
+.linkList {
+  list-style: none;
+  padding-inline-start: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: var(--spacing--small);
+}
+.linkList__item {
+  flex: 1 1 100%;
+}
+@media (min-width: 800px) {
+  .linkList__item {
+    flex: 1 1 calc(50% - var(--spacing--small) / 2);
+  }
+}
+.linkList__link {
+  display: block;
+  padding: 0.5rem;
+  background-color: var(--color--primary);
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
+}
+.linkList__link:hover, .linkList__link:focus {
+  text-decoration: none;
+  opacity: 1;
+}
+.linkList__inner {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid var(--color--lightest);
+}
+.linkList__image {
+  flex: 0 0 30%;
+  order: 2;
+  margin: 0;
+  padding: 0.5rem;
+}
+.linkList__content {
+  flex: 0 0 70%;
+  order: 1;
+  color: var(--color--lightest);
+  text-align: center;
+}
+.linkList__title {
+  margin-block: var(--spacing--small);
+}
+.linkList__summary {
+  width: min(100%, 24rem);
+  margin-inline: auto;
+  padding-inline: 0.5rem;
+  font-size: var(--font-size--small);
+}
+
+/**
  * Form
  */
 .form label {
