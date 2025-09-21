@@ -22,12 +22,22 @@ $artworks = array_reverse($artworks);
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>越前海岸からの版画ゆうびん | 版画ゆうびん舎</title>
+    <title>版画ゆうびん舎 - 越前海岸から発信 おさのなおこの版画工房</title>
+    <meta name="description" content="心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たちなど、おさのなおこの木版画ポートフォリオ。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="/favicon.ico">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RBWQL4BZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-L7RBWQL4BZ');
+    </script>
   </head>
   <body class="preloader" data-background-color="hsl(45, 50%, 90%)">
     <header id="header" class="header">

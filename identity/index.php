@@ -14,11 +14,21 @@ $posts = load_all_articles($dir);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>制作に寄せて | 版画ゆうびん舎</title>
+    <meta name="description" content="版画のモチーフは、心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たち。大切な方へお便りを出すような心地で、一枚一枚版画を制作しています。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="/favicon.ico">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RBWQL4BZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-L7RBWQL4BZ');
+    </script>
   </head>
   <body>
     <header id="header" class="header">

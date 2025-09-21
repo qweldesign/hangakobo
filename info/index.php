@@ -26,12 +26,28 @@ if ($slug) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お知らせ | 版画ゆうびん舎</title>
+    <?php if ($slug) { ?>
+      <title><?php echo $post['title'] . ' | '; ?>お知らせ | 版画ゆうびん舎</title>
+      <meta name="description" content="<?php echo $post['summary']; ?>">
+    <?php } else { ?>
+      <title>お知らせ | 版画ゆうびん舎</title>
+      <meta name="description" content="版画ゆうびん舎 おさのなおこの展示会の予定・制作実績など">
+    <?php } ?>
+    <meta name="description" content="<?php echo $post['summary']; ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="/favicon.ico">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7RBWQL4BZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-L7RBWQL4BZ');
+    </script>
   </head>
   <body>
     <header id="header" class="header">
