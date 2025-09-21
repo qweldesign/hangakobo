@@ -45,7 +45,7 @@ $hangakobo = new Hangakobo();
             <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
-            <li class="gNav__menuItem"><a href="/#gallery">ギャラリー</a></li>
+            <li class="gNav__menuItem"><a href="/gallery/">木版画ギャラリー</a></li>
             <li class="gNav__menuItem"><a href="/#links">リンク集</a></li>
             <li class="gNav__menuItem"><a href="/#contact">お問い合わせ</a></li>
           </ul>

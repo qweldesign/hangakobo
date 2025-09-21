@@ -52,8 +52,8 @@ class Hangakobo {
       $this->identity = $identityLoadar->load();
     }
 
-    // トップ階層では、artworks.jsonも読み込む
-    if ($class === 'top') {
+    // トップ階層と「木版画ギャラリー」では、artworks.jsonも読み込む
+    if ($class === 'top' || $class === 'gallery') {
       $jsonDir = dirname(__DIR__) . '/content/artworks.json';
       $json    = file_get_contents($jsonDir);
       // artworks.json

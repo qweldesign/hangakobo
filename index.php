@@ -40,7 +40,7 @@ $hangakobo = new Hangakobo();
             <li class="gNav__menuItem"><a href="/#identity">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/#info">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
-            <li class="gNav__menuItem"><a href="/#gallery">ギャラリー</a></li>
+            <li class="gNav__menuItem"><a href="/#gallery">木版画ギャラリー</a></li>
             <li class="gNav__menuItem"><a href="/#links">リンク集</a></li>
             <li class="gNav__menuItem"><a href="/#contact">お問い合わせ</a></li>
           </ul>
@@ -173,12 +173,12 @@ $hangakobo = new Hangakobo();
       </section>
       <section id="gallery" class="section">
         <div class="section__container">
-          <h2 class="section__title">ギャラリー</h2>
+          <h2 class="section__title">木版画ギャラリー</h2>
         </div>
         <div class="slider" data-aspect-ratio="0.5" data-gap="144">
           <figure class="slider__inner">
             <?php foreach ($hangakobo->artworks as $artwork) { ?>
-              <?php if ($artwork['showOnGallery']) { ?>
+              <?php if ($artwork['showOnFront']) { ?>
                 <figure class="slider__item">
                   <img class="slider__image" src="/content/artworks/<?php echo $artwork['name']; ?>s.png" alt="<?php echo $artwork['title']; ?>">
                   <figcaption class="slider__caption"><?php echo $artwork['title']; ?></figcaption>
@@ -186,6 +186,9 @@ $hangakobo = new Hangakobo();
               <?php } ?>
             <?php } ?>
           </figure>
+        </div>
+        <div class="my-medium text-center">
+          <a href="/gallery/">作品をもっと見る &gt;</a>
         </div>
       </section>
       <section id="links" class="section">

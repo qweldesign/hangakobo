@@ -9,11 +9,11 @@ $hangakobo = new Hangakobo();
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>制作に寄せて | 版画ゆうびん舎</title>
-    <meta name="description" content="版画のモチーフは、心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たち。大切な方へお便りを出すような心地で、一枚一枚版画を制作しています。">
+    <title>木版画ギャラリー | 版画ゆうびん舎</title>
+    <meta name="description" content="心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たちなど、おさのなおこの木版画ポートフォリオ。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="/favicon.ico">
     <!-- Google tag (gtag.js) -->
@@ -26,7 +26,7 @@ $hangakobo = new Hangakobo();
       gtag('config', 'G-L7RBWQL4BZ');
     </script>
   </head>
-  <body>
+  <body class="preloader" data-background-color="hsl(45, 50%, 90%)">
     <header id="header" class="header">
       <div class="header__inner">
         <div id="gNav" class="gNav">
@@ -46,7 +46,7 @@ $hangakobo = new Hangakobo();
           </ul>
           <ul class="gNav__socialMenu">
             <li class="gNav__menuItem gNav__menuItem--social">
-              <a href="https://instagram.com/osanonaoko/" target="_blank" rel="noopener">
+              <a href="https://instagram.com/" target="_blank" rel="noopener">
                 <svg class="icon icon--si icon--instagram icon--md" width="36" height="36" aria-hidden="true">
                   <use href="/assets/icons.svg#si-instagram"></use>
                 </svg>
@@ -58,31 +58,29 @@ $hangakobo = new Hangakobo();
     <main id="main" class="main">
       <div class="main__container">
         <header class="main__header">
-          <h1 class="main__title">制作に寄せて</h1>
+          <h1 class="main__title">木版画ギャラリー</h1>
+          <p class="main__lead">おさのなおこの木版画ポートフォリオ。</p>
         </header>
         <ul id="breadcrumb" class="breadcrumb">
           <li class="breadcrumb__item">
             <a href="/">Top</a>
           </li>
           <li class="breadcrumb__item is-current">
-            <span>制作に寄せて</span>
+            <span>木版画ギャラリー</span>
           </li>
         </ul>
-        <div class="main__content">
-          <section class="main__section">
-            <?php foreach ($hangakobo->identity as $post) { ?>
-              <section class="mediaText">
-                <figure class="mediaText__media">
-                  <img loading="razy" class="<?php echo $post['class'] ?>" src="<?php echo $post['img'] ?>">
-                </figure>
-                <div class="mediaText__content">
-                  <h2 class="mediaText__title"><?php echo $post['title']; ?></h2>
-                  <?php echo $hangakobo->text($post['content']); ?>
-                </div>
-              </section>
+      </div>
+      <div class="slider" data-aspect-ratio="0.5" data-gap="144">
+        <figure class="slider__inner">
+          <?php foreach ($hangakobo->artworks as $artwork) { ?>
+            <?php if ($artwork['showOnGallery']) { ?>
+              <figure class="slider__item">
+                <img class="slider__image" src="/content/artworks/<?php echo $artwork['name']; ?>s.png" alt="<?php echo $artwork['title']; ?>">
+                <figcaption class="slider__caption"><?php echo $artwork['title']; ?></figcaption>
+              </figure>
             <?php } ?>
-          </section>
-        </div>
+          <?php } ?>
+        </figure>
       </div>
     </main>
     <div class="cover"></div>
