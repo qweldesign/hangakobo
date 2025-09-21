@@ -4,11 +4,11 @@
 
 .postIndex {
   @include list-unstyled();
-  @include row(center, flex-start);
+  @include row(flex-start, flex-start);
   gap: space("medium");
   
   & > * {
-    flex: 1 1 40%;
+    flex: 0 1 calc(50% - #{space("medium")} / 2);
   }
 
   @media (min-width: breakpoint("lg")) {
@@ -17,7 +17,7 @@
 
   &__item {
     display: block;
-    margin: space("medium") auto;
+    margin: space("medium") 0;
 
     @media (min-width: breakpoint("lg")) {
       margin-block-end: space("large");

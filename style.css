@@ -1086,12 +1086,12 @@ button, input, select, textarea {
   padding-inline-start: 0;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: var(--spacing--medium);
 }
 .postIndex > * {
-  flex: 1 1 40%;
+  flex: 0 1 calc(50% - var(--spacing--medium) / 2);
 }
 @media (min-width: 1000px) {
   .postIndex {
@@ -1100,7 +1100,7 @@ button, input, select, textarea {
 }
 .postIndex__item {
   display: block;
-  margin: var(--spacing--medium) auto;
+  margin: var(--spacing--medium) 0;
 }
 @media (min-width: 1000px) {
   .postIndex__item {

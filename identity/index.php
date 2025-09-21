@@ -1,13 +1,7 @@
 <?php
-require_once dirname(__DIR__) . '/inc/ContentLoader.php';
-require_once dirname(__DIR__) . '/inc/Parsedown.php';
-
-$dir       = dirname(__DIR__) . '/content/identity/';
-$loader    = new ContentLoader($dir);
-$parsedown = new Parsedown();
-
-$posts = $loader->load();
-
+// Hangakobo start!
+require_once dirname(__DIR__) . '/inc/Hangakobo.php';
+$hangakobo = new Hangakobo();
 ?>
 
 <!DOCTYPE html>
@@ -76,14 +70,14 @@ $posts = $loader->load();
         </ul>
         <div class="main__content">
           <section class="main__section">
-            <?php foreach ($posts as $post) { ?>
+            <?php foreach ($hangakobo->identity as $post) { ?>
               <section class="mediaText">
                 <figure class="mediaText__media">
                   <img loading="razy" class="img-fixed" src="<?php echo $post['img'] ?>">
                 </figure>
                 <div class="mediaText__content">
                   <h2 class="mediaText__title"><?php echo $post['title']; ?></h2>
-                  <?php echo $parsedown->text($post['content']); ?>
+                  <?php echo $hangakobo->text($post['content']); ?>
                 </div>
               </section>
             <?php } ?>

@@ -1,22 +1,7 @@
 <?php
-require_once dirname(__DIR__) . '/inc/ContentLoader.php';
-require_once dirname(__DIR__) . '/inc/Parsedown.php';
-
-$dir   = dirname(__DIR__) . '/content/info/';
-$slug  = $_GET['slug'] ?? null;
-$count = (int)($_GET['count'] ?? 10);
-$page  = (int)($_GET['page'] ?? 1);
-
-$loader    = new ContentLoader($dir);
-$parsedown = new Parsedown();
-
-$posts = $loader->load();
-$posts = array_slice($posts, $count * ($page - 1), $count);
-
-if ($slug) {
-  $post = $loader->find($slug);
-}
-
+// Hangakobo start!
+require_once dirname(__DIR__) . '/inc/Hangakobo.php';
+$hangakobo = new Hangakobo();
 ?>
 
 <!DOCTYPE html>
@@ -24,14 +9,13 @@ if ($slug) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php if ($slug) { ?>
-      <title><?php echo $post['title'] . ' | '; ?>お知らせ | 版画ゆうびん舎</title>
-      <meta name="description" content="<?php echo $post['summary']; ?>">
+    <?php if ($hangakobo->article) { ?>
+      <title><?php echo $hangakobo->article['title'] . ' | '; ?>お知らせ | 版画ゆうびん舎</title>
+      <meta name="description" content="<?php echo $hangakobo->article['summary']; ?>">
     <?php } else { ?>
       <title>お知らせ | 版画ゆうびん舎</title>
       <meta name="description" content="版画ゆうびん舎 おさのなおこの展示会の予定・制作実績など">
     <?php } ?>
-    <meta name="description" content="<?php echo $post['summary']; ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
@@ -80,18 +64,18 @@ if ($slug) {
       <div class="main__container">
         <header class="main__header">
           <h1 class="main__title">お知らせ</h1>
-          <p class="main__lead">展示会の予定・制作実績など</p>
+          <p class="main__lead">おさのなおこの展示会の予定・制作実績など</p>
         </header>
         <ul id="breadcrumb" class="breadcrumb">
           <li class="breadcrumb__item">
             <a href="/">Top</a>
           </li>
-          <?php if ($post) { ?>
+          <?php if ($hangakobo->article) { ?>
             <li class="breadcrumb__item">
               <a href="/info/">お知らせ</a>
             </li>
             <li class="breadcrumb__item is-current">
-              <span><?php echo $post['title']; ?></span>
+              <span><?php echo $hangakobo->article['title']; ?></span>
             </li>
           <?php } else { ?>
             <li class="breadcrumb__item is-current">
@@ -100,9 +84,9 @@ if ($slug) {
           <?php } ?>
         </ul>
         <div class="main__content">
-          <?php if (!$slug) { ?>
-            <ul class="postList postList--list is-switched">
-              <?php foreach ($posts as $post) { ?>
+          <?php if (!$hangakobo->article) { ?>
+            <ul class="postList postList--list">
+              <?php foreach ($hangakobo->info as $post) { ?>
                 <li class="postList__item postItem">
                   <figure class="postItem__image">
                     <a href="/info/<?php echo $post['slug']; ?>/">
@@ -128,13 +112,25 @@ if ($slug) {
             </ul>
           <?php } else { ?>
             <article class="main__article">
-              <div class="main__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
-              <?php echo $parsedown->text($post['content']); ?>
+              <div class="main__date"><?php echo date('Y.m.d',strtotime($hangakobo->article['date'])); ?></div>
+              <?php echo $hangakobo->text($hangakobo->article['content']); ?>
             </article>
             <aside class="main__aside">
+              <h2 class="main__heading">最新の版画ゆうびん</h2>
+              <ul class="postIndex">
+                <?php foreach ($hangakobo->posts as $post) { ?>
+                  <li class="postIndex__item">
+                    <a href="/posts/<?php echo $post['slug']; ?>/">
+                      <img loading="razy" class="postIndex__image" src="<?php echo $post['img']; ?>">
+                      <span class="postIndex__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></span>
+                      <span class="postIndex__title"><?php echo $post['title']; ?></span>
+                    </a>
+                  </li>
+                <?php } ?>
+              </ul>
               <h2 class="main__heading">最新のお知らせ</h2>
               <ul class="postIndex">
-                <?php foreach ($posts as $post) { ?>
+                <?php foreach ($hangakobo->info as $post) { ?>
                   <li class="postIndex__item">
                     <a href="/info/<?php echo $post['slug']; ?>/">
                       <img loading="razy" class="postIndex__image" src="<?php echo $post['img']; ?>">

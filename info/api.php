@@ -1,19 +1,11 @@
 <?php
-
-include_once dirname(__DIR__) . '/inc/ContentLoader.php';
-
-$dir   = dirname(__DIR__) . '/content/info/';
-$count = (int)($_GET['count'] ?? 10);
-$page  = (int)($_GET['page'] ?? 1);
-
-// 最新記事を取得
-$loader = new ContentLoader($dir);
-$posts  = $loader->load();
-$posts  = array_slice($posts, $count * ($page - 1), $count);
+// Hangakobo start!
+require_once dirname(__DIR__) . '/inc/Hangakobo.php';
+$hangakobo = new Hangakobo();
 
 // APIのアクセス許可
 header("Access-Control-Allow-Origin: *");
 
 // JSON出力
-echo json_encode($posts, JSON_UNESCAPED_UNICODE);
+echo json_encode($hangakobo->info, JSON_UNESCAPED_UNICODE);
 return;

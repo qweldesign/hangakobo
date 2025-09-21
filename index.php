@@ -1,24 +1,7 @@
 <?php
-require_once __DIR__ . '/inc/ContentLoader.php';
-
-$postsDir = __DIR__ . '/content/posts/';
-$infoDir  = __DIR__ . '/content/info/';
-$linksDir = __DIR__ . '/content/links/';
-
-$postsLoader = new ContentLoader($postsDir);
-$infoLoader  = new ContentLoader($infoDir);
-$linksLoader = new ContentLoader($linksDir);
-
-$posts1 = $postsLoader->load();
-$posts2 = $infoLoader->load();
-$links  = $linksLoader->load();
-$posts1 = array_slice($posts1, 0, 3);
-$posts2 = array_slice($posts2, 0, 3);
-
-$json     = file_get_contents(__DIR__ . '/content/artworks.json');
-$artworks = json_decode($json, true);
-$artworks = array_reverse($artworks);
-
+// Hangakobo start!
+require_once __DIR__ . '/inc/Hangakobo.php';
+$hangakobo = new Hangakobo();
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +66,7 @@ $artworks = array_reverse($artworks);
         <div class="section__container">
           <h2 class="section__title">版画ゆうびん</h2>
           <ul class="postList postList--list">
-            <?php foreach ($posts1 as $post) { ?>
+            <?php foreach ($hangakobo->posts as $post) { ?>
               <li class="postList__item postItem">
                 <figure class="postItem__image">
                   <a href="/posts/<?php echo $post['slug']; ?>/">
@@ -133,7 +116,7 @@ $artworks = array_reverse($artworks);
         <div class="section__container">
           <h2 class="section__title">お知らせ</h2>
           <ul class="postList postList--list is-switched">
-            <?php foreach ($posts2 as $post) { ?>
+            <?php foreach ($hangakobo->info as $post) { ?>
               <li class="postList__item postItem">
                 <figure class="postItem__image">
                   <a href="/info/<?php echo $post['slug']; ?>/">
@@ -194,7 +177,7 @@ $artworks = array_reverse($artworks);
         </div>
         <div class="slider" data-aspect-ratio="0.5" data-gap="144">
           <figure class="slider__inner">
-            <?php foreach ($artworks as $artwork) { ?>
+            <?php foreach ($hangakobo->artworks as $artwork) { ?>
               <?php if ($artwork['showOnGallery']) { ?>
                 <figure class="slider__item">
                   <img class="slider__image" src="/content/artworks/<?php echo $artwork['name']; ?>s.png" alt="<?php echo $artwork['title']; ?>">
@@ -209,7 +192,7 @@ $artworks = array_reverse($artworks);
         <div class="section__container">
           <h2 class="section__title">リンク集</h2>
           <ul class="linkList">
-            <?php foreach ($links as $link) { ?>
+            <?php foreach ($hangakobo->links as $link) { ?>
             <li class="linkList__item">
               <a class="linkList__link" href="<?php echo $link['link']; ?>" target="_blank" rel="noopener" style="background-color:<?php echo $link['bg']; ?>;">
                 <div class="linkList__inner" style="border-color:<?php echo $link['color']; ?>;">
