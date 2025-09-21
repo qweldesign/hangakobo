@@ -30,12 +30,12 @@ $preloader-bg:       map-get($theme-colors, $theme-accent) !default;
 
 .preloader {
   &__overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 900; // header: 1000 より背面
+    z-index: 1100; // header: 1000 より前面
     width: 100%;
     height: $preloader-height;
     background: $preloader-bg;

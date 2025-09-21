@@ -29,7 +29,7 @@ $artworks = array_reverse($artworks);
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="/favicon.ico">
   </head>
-  <body>
+  <body class="preloader" data-background-color="hsl(45, 50%, 90%)">
     <header id="header" class="header">
       <div class="header__inner">
         <div id="gNav" class="gNav">

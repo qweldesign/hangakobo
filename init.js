@@ -31,8 +31,8 @@ new DrawerMenu();
 //new Modal();
 
 // Preloader
-//import Preloader from './js/preloader.js';
-//new Preloader();
+import Preloader from './js/preloader.js';
+new Preloader();
 
 // Responsive Color
 //import ResponsiveColor from './js/responsiveColor.js';
