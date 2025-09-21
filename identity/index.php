@@ -73,7 +73,7 @@ $hangakobo = new Hangakobo();
             <?php foreach ($hangakobo->identity as $post) { ?>
               <section class="mediaText">
                 <figure class="mediaText__media">
-                  <img loading="razy" class="img-fixed" src="<?php echo $post['img'] ?>">
+                  <img loading="razy" class="<?php echo $post['class'] ?>" src="<?php echo $post['img'] ?>">
                 </figure>
                 <div class="mediaText__content">
                   <h2 class="mediaText__title"><?php echo $post['title']; ?></h2>
