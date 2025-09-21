@@ -40,7 +40,7 @@ $posts = load_all_articles($dir);
             </a>
           </div>
           <ul class="gNav__primaryMenu">
-            <li class="gNav__menuItem"><a href="/letters/">版画ゆうびん</a></li>
+            <li class="gNav__menuItem"><a href="/posts/">版画ゆうびん</a></li>
             <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>

@@ -3,7 +3,7 @@ require_once dirname(__DIR__) . '/inc/blog.php';
 require_once dirname(__DIR__) . '/inc/parsedown.php';
 $Parsedown = new Parsedown();
 
-$dir   = dirname(__DIR__) . '/content/letters/';
+$dir   = dirname(__DIR__) . '/content/posts/';
 $slug  = $_GET['slug'] ?? null;
 $count = (int)($_GET['count'] ?? 10);
 $page  = (int)($_GET['page'] ?? 1);
@@ -58,7 +58,7 @@ if ($slug) {
             </a>
           </div>
           <ul class="gNav__primaryMenu">
-            <li class="gNav__menuItem"><a href="/letters/">版画ゆうびん</a></li>
+            <li class="gNav__menuItem"><a href="/posts/">版画ゆうびん</a></li>
             <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
@@ -89,7 +89,7 @@ if ($slug) {
           </li>
           <?php if ($slug !== 'about' && $post) { ?>
             <li class="breadcrumb__item">
-              <a href="/letters/">版画ゆうびん</a>
+              <a href="/posts/">版画ゆうびん</a>
             </li>
             <li class="breadcrumb__item is-current">
               <span><?php echo $post['title']; ?></span>
@@ -106,7 +106,7 @@ if ($slug) {
               <?php foreach ($posts as $post) { ?>
                 <li class="postList__item postItem">
                   <figure class="postItem__image">
-                    <a href="/letters/<?php echo $post['slug']; ?>/">
+                    <a href="/posts/<?php echo $post['slug']; ?>/">
                       <img loading="razy" src="<?php echo $post['img'] ?>">
                     </a>
                   </figure>
@@ -115,13 +115,13 @@ if ($slug) {
                       <div class=postItem__date><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
                     </div>
                     <h3 class="postItem__heading">
-                      <a href="/letters/<?php echo $post['slug']; ?>/">
+                      <a href="/posts/<?php echo $post['slug']; ?>/">
                         <?php echo $post['title']; ?>
                       </a>
                     </h3>
                     <p class="postItem__excerpt">
                       <?php echo $post['summary']; ?>
-                      <a class="postItem__more" href="/letters/<?php echo $post['slug']; ?>/">もっと詳しく &gt;</a>
+                      <a class="postItem__more" href="/posts/<?php echo $post['slug']; ?>/">もっと詳しく &gt;</a>
                     </p>
                   </div>
                 </li>
@@ -137,7 +137,7 @@ if ($slug) {
               <ul class="postIndex">
                 <?php foreach ($posts as $post) { ?>
                   <li class="postIndex__item">
-                    <a href="/letters/<?php echo $post['slug']; ?>/">
+                    <a href="/posts/<?php echo $post['slug']; ?>/">
                       <img loading="razy" class="postIndex__image" src="<?php echo $post['img']; ?>">
                       <span class="postIndex__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></span>
                       <span class="postIndex__title"><?php echo $post['title']; ?></span>

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/inc/blog.php';
 
-$dir1   = __DIR__ . '/content/letters/';
+$dir1   = __DIR__ . '/content/posts/';
 $dir2   = __DIR__ . '/content/info/';
 $dir3   = __DIR__ . '/content/links/';
 
@@ -49,7 +49,7 @@ $artworks = array_reverse($artworks);
             </a>
           </h1>
           <ul class="gNav__primaryMenu">
-            <li class="gNav__menuItem"><a href="/#letters">版画ゆうびん</a></li>
+            <li class="gNav__menuItem"><a href="/#posts">版画ゆうびん</a></li>
             <li class="gNav__menuItem"><a href="/#identity">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/#info">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
@@ -75,14 +75,14 @@ $artworks = array_reverse($artworks);
           <figcaption></figcaption>
         </figure>
       </header>
-      <section id="letters" class="section">
+      <section id="posts" class="section">
         <div class="section__container">
           <h2 class="section__title">版画ゆうびん</h2>
           <ul class="postList postList--list">
             <?php foreach ($posts1 as $post) { ?>
               <li class="postList__item postItem">
                 <figure class="postItem__image">
-                  <a href="/letters/<?php echo $post['slug']; ?>/">
+                  <a href="/posts/<?php echo $post['slug']; ?>/">
                     <img loading="razy" src="<?php echo $post['img'] ?>">
                   </a>
                 </figure>
@@ -91,20 +91,20 @@ $artworks = array_reverse($artworks);
                     <div class=postItem__date><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
                   </div>
                   <h3 class="postItem__heading">
-                    <a href="/letters/<?php echo $post['slug']; ?>/">
+                    <a href="/posts/<?php echo $post['slug']; ?>/">
                       <?php echo $post['title']; ?>
                     </a>
                   </h3>
                   <p class="postItem__excerpt">
                     <?php echo $post['summary']; ?>
-                    <a class="postItem__more" href="/letters/<?php echo $post['slug']; ?>/">もっと詳しく &gt;</a>
+                    <a class="postItem__more" href="/posts/<?php echo $post['slug']; ?>/">もっと詳しく &gt;</a>
                   </p>
                 </div>
               </li>
             <?php } ?>
           </ul>
           <div class="my-medium text-center">
-            <a href="/letters/">版画ゆうびんをもっと見る &gt;</a>
+            <a href="/posts/">版画ゆうびんをもっと見る &gt;</a>
           </div>
         </div>
       </section>
