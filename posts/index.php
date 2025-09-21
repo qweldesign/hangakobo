@@ -1,22 +1,20 @@
 <?php
-require_once dirname(__DIR__) . '/inc/blog.php';
-require_once dirname(__DIR__) . '/inc/parsedown.php';
-$Parsedown = new Parsedown();
+require_once dirname(__DIR__) . '/inc/ContentLoader.php';
+require_once dirname(__DIR__) . '/inc/Parsedown.php';
 
 $dir   = dirname(__DIR__) . '/content/posts/';
 $slug  = $_GET['slug'] ?? null;
 $count = (int)($_GET['count'] ?? 10);
 $page  = (int)($_GET['page'] ?? 1);
 
-$posts = load_all_articles($dir);
+$loader    = new ContentLoader($dir);
+$parsedown = new Parsedown();
+
+$posts = $loader->load();
 $posts = array_slice($posts, $count * ($page - 1), $count);
 
 if ($slug) {
-  $post = find_article_by_slug($slug, $dir);
-  if (!$post) {
-    $content = "<h2>記事が見つかりません</h2><p>指定された記事は存在しないか、削除された可能性があります。</p>";
-  }
-  $content = $Parsedown->text($post['content']);
+  $post = $loader->find($slug);
 }
 
 ?>
@@ -87,7 +85,7 @@ if ($slug) {
           <li class="breadcrumb__item">
             <a href="/">Top</a>
           </li>
-          <?php if ($slug !== 'about' && $post) { ?>
+          <?php if ($post) { ?>
             <li class="breadcrumb__item">
               <a href="/posts/">版画ゆうびん</a>
             </li>
@@ -130,7 +128,7 @@ if ($slug) {
           <?php } else { ?>
             <article class="main__article">
               <div class="main__date"><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
-              <?php echo $Parsedown->text($content); ?>
+              <?php echo $parsedown->text($post['content']); ?>
             </article>
             <aside class="main__aside">
               <h2 class="main__heading">最新の版画ゆうびん</h2>

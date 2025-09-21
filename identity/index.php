@@ -1,10 +1,12 @@
 <?php
-require_once dirname(__DIR__) . '/inc/blog.php';
-require_once dirname(__DIR__) . '/inc/parsedown.php';
-$Parsedown = new Parsedown();
+require_once dirname(__DIR__) . '/inc/ContentLoader.php';
+require_once dirname(__DIR__) . '/inc/Parsedown.php';
 
-$dir   = dirname(__DIR__) . '/content/identity/';
-$posts = load_all_articles($dir);
+$dir       = dirname(__DIR__) . '/content/identity/';
+$loader    = new ContentLoader($dir);
+$parsedown = new Parsedown();
+
+$posts = $loader->load();
 
 ?>
 
@@ -81,7 +83,7 @@ $posts = load_all_articles($dir);
                 </figure>
                 <div class="mediaText__content">
                   <h2 class="mediaText__title"><?php echo $post['title']; ?></h2>
-                  <?php echo $Parsedown->text($post['content']); ?>
+                  <?php echo $parsedown->text($post['content']); ?>
                 </div>
               </section>
             <?php } ?>

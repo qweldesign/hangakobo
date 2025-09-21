@@ -1,13 +1,17 @@
 <?php
-require_once __DIR__ . '/inc/blog.php';
+require_once __DIR__ . '/inc/ContentLoader.php';
 
-$dir1   = __DIR__ . '/content/posts/';
-$dir2   = __DIR__ . '/content/info/';
-$dir3   = __DIR__ . '/content/links/';
+$postsDir = __DIR__ . '/content/posts/';
+$infoDir  = __DIR__ . '/content/info/';
+$linksDir = __DIR__ . '/content/links/';
 
-$posts1 = load_all_articles($dir1);
-$posts2 = load_all_articles($dir2);
-$links  = load_all_articles($dir3);
+$postsLoader = new ContentLoader($postsDir);
+$infoLoader  = new ContentLoader($infoDir);
+$linksLoader = new ContentLoader($linksDir);
+
+$posts1 = $postsLoader->load();
+$posts2 = $infoLoader->load();
+$links  = $linksLoader->load();
 $posts1 = array_slice($posts1, 0, 3);
 $posts2 = array_slice($posts2, 0, 3);
 
