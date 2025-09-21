@@ -109,9 +109,8 @@ $artworks = array_reverse($artworks);
               <p>版画のモチーフは、
                 <br>心に残った風景、身近な動植物、
                 <br>変哲の無い日用品、天使や架空の動物たち。
-                <br>版画作品を日々の暮らしの傍らに、
-                <br>そっと置いて欲しいと願い、
-                <br>制作しています。</p>
+                <br>大切な方へお便りを出すような心地で、
+                <br>一枚一枚制作しています。</p>
               <a class="button button--primary button--sm my-medium" href="/identity/">もっと詳しく</a>
           </div>
         </div> 
@@ -211,7 +210,9 @@ $artworks = array_reverse($artworks);
               </a>
             </li>
             <?php } ?>
-          <ul>
+          </ul>
+          <p class="text-center my-medium"><small>「いきものたち」「木版画の灯」は、現在制作休止中です。
+            <br>作品アーカイブとしてお楽しみください。</small><p>
         </div>
       </section>  
       <section id="contact" class="section">
