@@ -168,7 +168,7 @@ $artworks = array_reverse($artworks);
                   <br>毎日の時を刻む、暮らしの相棒。</p>
               </div>
               <div class="clock__more">
-                <a class="button button--primary button--sm my-medium" href="https://www.iichi.com/listing/item/340160" target="_blank" rel="noopener">商品ページを見る</a>
+                <a class="button button--secondary button--sm my-medium" href="https://www.iichi.com/listing/item/340160" target="_blank" rel="noopener">商品ページを見る</a>
               </div>
             </div>
           </div>
@@ -204,7 +204,7 @@ $artworks = array_reverse($artworks);
                   </figure>
                   <div class="linkList__content" style="color:<?php echo $link['color']; ?>;">
                     <h3 class="linkList__title"><?php echo $link['title']; ?></h3>
-                    <p class="linkList__summary visible-sm"><?php echo $link['summary']; ?></p>
+                    <p class="linkList__summary"><?php echo $link['summary']; ?></p>
                   </div>
                 </div>
               </a>

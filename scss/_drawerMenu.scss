@@ -76,7 +76,7 @@ $drawer-image-filter:        invert(1) grayscale(1) brightness(4) !default;
   right: 0;
   bottom: 0;
   z-index: 1100;
-  width: clamp(18rem, 40%, 24rem);
+  width: 18rem;
   height: 100%;
   margin: auto;
   background-color: $drawer-bg;
@@ -117,7 +117,7 @@ $drawer-image-filter:        invert(1) grayscale(1) brightness(4) !default;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-inline-start: 20%;
+    padding-inline-start: 25%;
   }
 
   &__item {
@@ -128,7 +128,7 @@ $drawer-image-filter:        invert(1) grayscale(1) brightness(4) !default;
     a {
       display: block;
       padding-block: space("x-small");
-      padding-inline-start: 20%;
+      padding-inline-start: 25%;
       color: $drawer-color;
       fill: $drawer-color;
       text-decoration: none;
@@ -146,7 +146,7 @@ $drawer-image-filter:        invert(1) grayscale(1) brightness(4) !default;
       font-size: $h1-font-size;
 
       a {
-        padding: 0 0 0 20%;
+        padding: 0 0 0 25%;
       }
 
       img {

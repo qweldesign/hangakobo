@@ -11,11 +11,14 @@
 
   &__base {
     position: relative;
+    max-width: 22.5rem;
     @include col(5, false, "md");
+    margin-inline: auto;
     padding: 0;
 
     @media (min-width: breakpoint("md")) {
       order: 1;
+      max-width: 30rem;
     }
   }
   

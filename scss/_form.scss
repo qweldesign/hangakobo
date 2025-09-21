@@ -31,6 +31,12 @@
         display: block;
       }
     }
+
+    input, select, textarea {
+      border: none;
+      border-radius: space("x-small");
+      background-color: #fff;
+    }
   }
 
   &__buttons {

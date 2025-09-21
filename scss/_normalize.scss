@@ -21,6 +21,10 @@ body {
   -webkit-text-size-adjust: 100%; // Prevent adjustments of font size after orientation changes in iOS
 }
 
+:target {
+  scroll-margin-block-start: space("x-large");
+}
+
 h1, h2, h3, h4, h5, h6 {
   @include heading();
 }

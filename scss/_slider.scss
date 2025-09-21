@@ -15,7 +15,7 @@ $slider-nav-active-color:    $link-hover-color !default;
 .slider {
   position: relative;
   width: 100%;
-  height: calc(83.33vmin / #{$slider-aspect-ratio});
+  height: calc(62.5vmin / #{$slider-aspect-ratio});
   overflow: hidden;
 
   @media (min-width: $slider-break-point) {

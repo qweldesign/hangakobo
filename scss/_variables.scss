@@ -1,13 +1,13 @@
 // Variables
 
 $colors: (
-  "primary":   hsl(220, 100%, 30%),
+  "primary":   hsl(220, 50%, 30%),
   "secondary": hsl(30, 85%, 50%)
 );
 
 $body-bg:    hsl(45, 50%, 90%);
 
-$grid-base:            6rem;
+$grid-base:            5.33rem;
 
 $breakpoints:        (
   sm:                  600px,
@@ -34,4 +34,5 @@ $font-weight-sans:     500;
 $drawer-always-shown:  true;
 
 $slider-aspect-ratio:  0.5;
-$slider-height:        36rem;
+$slider-break-point:   600px;
+$slider-height:        30rem;
