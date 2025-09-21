@@ -39,9 +39,9 @@ $artworks = array_reverse($artworks);
             </a>
           </h1>
           <ul class="gNav__primaryMenu">
-            <li class="gNav__menuItem"><a href="/letters/">版画ゆうびん</a></li>
-            <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
-            <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
+            <li class="gNav__menuItem"><a href="/#letters">版画ゆうびん</a></li>
+            <li class="gNav__menuItem"><a href="/#identity">制作に寄せて</a></li>
+            <li class="gNav__menuItem"><a href="/#info">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
             <li class="gNav__menuItem"><a href="/#gallery">ギャラリー</a></li>
             <li class="gNav__menuItem"><a href="/#links">リンク集</a></li>
@@ -123,7 +123,7 @@ $artworks = array_reverse($artworks);
             <?php foreach ($posts2 as $post) { ?>
               <li class="postList__item postItem">
                 <figure class="postItem__image">
-                  <a href="/letters/<?php echo $post['slug']; ?>/">
+                  <a href="/info/<?php echo $post['slug']; ?>/">
                     <img loading="razy" src="<?php echo $post['img'] ?>">
                   </a>
                 </figure>
@@ -132,7 +132,7 @@ $artworks = array_reverse($artworks);
                     <div class=postItem__date><?php echo date('Y.m.d',strtotime($post['date'])); ?></div>
                   </div>
                   <h3 class="postItem__heading">
-                    <a href="/letters/<?php echo $post['slug']; ?>/">
+                    <a href="/info/<?php echo $post['slug']; ?>/">
                       <?php echo $post['title']; ?>
                     </a>
                   </h3>
@@ -247,6 +247,7 @@ $artworks = array_reverse($artworks);
             </div>
           </form>
         </div>
+      </section>
     </main>
     <div class="cover"></div>
     <footer id="footer" class="footer">
