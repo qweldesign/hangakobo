@@ -1,7 +1,7 @@
 <?php
 // Hangakobo start!
 require_once __DIR__ . '/inc/Hangakobo.php';
-$hangakobo = new Hangakobo();
+$cms = new Hangakobo();
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +66,7 @@ $hangakobo = new Hangakobo();
         <div class="section__container">
           <h2 class="section__title">版画ゆうびん</h2>
           <ul class="postList postList--list">
-            <?php foreach ($hangakobo->posts as $post) { ?>
+            <?php foreach ($cms->get_posts('posts', 1, 3) as $post) { ?>
               <li class="postList__item postItem">
                 <figure class="postItem__image">
                   <a href="/posts/<?php echo $post['slug']; ?>/">
@@ -116,7 +116,7 @@ $hangakobo = new Hangakobo();
         <div class="section__container">
           <h2 class="section__title">お知らせ</h2>
           <ul class="postList postList--list is-switched">
-            <?php foreach ($hangakobo->info as $post) { ?>
+            <?php foreach ($cms->get_posts('info', 1, 3) as $post) { ?>
               <li class="postList__item postItem">
                 <figure class="postItem__image">
                   <a href="/info/<?php echo $post['slug']; ?>/">
@@ -177,7 +177,7 @@ $hangakobo = new Hangakobo();
         </div>
         <div class="slider" data-aspect-ratio="0.5" data-gap="144">
           <figure class="slider__inner">
-            <?php foreach ($hangakobo->artworks as $artwork) { ?>
+            <?php foreach ($cms->get_artworks() as $artwork) { ?>
               <?php if ($artwork['showOnFront']) { ?>
                 <figure class="slider__item">
                   <img class="slider__image" src="/content/artworks/<?php echo $artwork['name']; ?>s.png" alt="<?php echo $artwork['title']; ?>">
@@ -195,7 +195,7 @@ $hangakobo = new Hangakobo();
         <div class="section__container">
           <h2 class="section__title">リンク集</h2>
           <ul class="linkList">
-            <?php foreach ($hangakobo->links as $link) { ?>
+            <?php foreach ($cms->get_posts('links') as $link) { ?>
             <li class="linkList__item">
               <a class="linkList__link" href="<?php echo $link['link']; ?>" target="_blank" rel="noopener" style="background-color:<?php echo $link['bg']; ?>;">
                 <div class="linkList__inner" style="border-color:<?php echo $link['color']; ?>;">

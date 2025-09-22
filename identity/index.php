@@ -1,7 +1,7 @@
 <?php
 // Hangakobo start!
 require_once dirname(__DIR__) . '/inc/Hangakobo.php';
-$hangakobo = new Hangakobo();
+$cms = new Hangakobo();
 ?>
 
 <!DOCTYPE html>
@@ -60,17 +60,17 @@ $hangakobo = new Hangakobo();
         <header class="main__header">
           <h1 class="main__title">制作に寄せて</h1>
         </header>
-        <?php echo $hangakobo->breadcrumb($hangakobo->article); ?>
+        <?php echo $cms->get_breadcrumb(); ?>
         <div class="main__content">
           <section class="main__section">
-            <?php foreach ($hangakobo->identity as $post) { ?>
+            <?php foreach ($cms->get_posts() as $post) { ?>
               <section class="mediaText">
                 <figure class="mediaText__media">
                   <img loading="razy" class="<?php echo $post['class'] ?>" src="<?php echo $post['img'] ?>">
                 </figure>
                 <div class="mediaText__content">
                   <h2 class="mediaText__title"><?php echo $post['title']; ?></h2>
-                  <?php echo $hangakobo->text($post['content']); ?>
+                  <?php echo $cms->text($post['content']); ?>
                 </div>
               </section>
             <?php } ?>

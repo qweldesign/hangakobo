@@ -4,102 +4,87 @@ require_once __DIR__ . '/ContentNavigation.php';
 require_once __DIR__ . '/Parsedown.php';
 
 class Hangakobo {
+  protected ?string $slug = null;
+  protected int $count;
+  protected int $page;
+  protected string $class;
+  protected array $posts = [];
+  protected array $artworks = [];
+  public ?array $article = null;
+
   public function __construct() {
     $this->slug  = $_GET['slug'] ?? null;
     $this->count = (int)($_GET['count'] ?? 10);
     $this->page  = (int)($_GET['page'] ?? 1);
+    $this->class = $this->get_class();
 
-    $class = $this->get_page();
-
-    // トップ階層では、最新3件の記事を取得する
-    if ($class === 'top') {
-      $this->count = 3;
-      $this->page  = 1;
+    // トップ階層と「木版画ギャラリー」以外では、classからメイン記事を取得する
+    if ($this->class !== 'top' && $this->class !== 'gallery') {
+      $dir    = dirname(__DIR__) . '/content/' . $this->class . '/';
+      $loader = new ContentLoader($dir);
+      $this->posts = $loader->load();
     }
 
-    // 個別記事では、最新4件の記事を取得する
-    if ($this->slug) {
-      $this->count = 4;
-      $this->page  = 1;
-    }
-
-    // トップ階層、「版画ゆうびん」、「お知らせ」では、posts と info から記事を取得
-    if ($class === 'top' || $class === 'posts' || $class == 'info') {
-      $postsDir    = dirname(__DIR__) . '/content/posts/';
-      $infoDir     = dirname(__DIR__) . '/content/info/';
-      $postsLoader = new ContentLoader($postsDir);
-      $infoLoader  = new ContentLoader($infoDir);
-      // posts記事取得
-      $this->posts      = $postsLoader->load();
-      $this->postsCount = count($this->posts);
-      $this->posts      = array_slice($this->posts, $this->count * ($this->page - 1), $this->count);
-      // info記事取得
-      $this->info      = $infoLoader->load();
-      $this->infoCount = count($this->info);
-      $this->info      = array_slice($this->info, $this->count * ($this->page - 1), $this->count);
-    }
-    
-    // トップ階層では、links も取得
-    if ($class === 'top') {
-      $linksDir    = dirname(__DIR__) . '/content/links/';
-      $linksLoader = new ContentLoader($linksDir);
-      // links全取得
-      $this->links = $linksLoader->load();
-    }
-
-    // 「制作に寄せて」では、identity から記事を取得
-    if ($class === 'identity') {
-      $identityDir    = dirname(__DIR__) . '/content/identity/';
-      $identityLoadar = new ContentLoader($identityDir);
-      // identity全取得
-      $this->identity = $identityLoadar->load();
-    }
-
-    // トップ階層と「木版画ギャラリー」では、artworks.jsonも読み込む
-    if ($class === 'top' || $class === 'gallery') {
-      $jsonDir = dirname(__DIR__) . '/content/artworks.json';
-      $json    = file_get_contents($jsonDir);
-      // artworks.json
-      $this->artworks = json_decode($json, true);
-      $this->artworks = array_reverse($this->artworks);
-    }
-
-    // $this->slugがあれば、個別記事を読み込む
-    if ($this->slug && $class === 'posts') {
-      $this->article = $postsLoader->find($this->slug);
-    } else if ($this->slug && $class === 'info') {
-      $this->article = $infoLoader->find($this->slug);
-    } else {
-      $this->article = null;
+    // 個別記事では、slugから個別記事を取得する
+    if ($this->is_single()) {;
+      $dir    = dirname(__DIR__) . '/content/' . $this->class . '/';
+      $loader = new ContentLoader($dir);
+      $this->article = $loader->find($this->slug);
     }
 	}
 
-  public function breadcrumb(array $article = null): string {
-    $class = $this->get_page();
+  public function is_single() {
+    return $this->slug ? true : false;
+  } 
 
-    if ($class === 'posts') $subdirLabel = '版画ゆうびん';
-    if ($class === 'identity') $subdirLabel = '制作に寄せて';
-    if ($class === 'info') $subdirLabel = 'お知らせ';
-    if ($class === 'gallery') $subdirLabel = '木版画ギャラリー';
+  // 記事を返す
+  // デフォルトではメイン記事を10件返す
+  // 引数を指定して、サブ記事を取得できる
+  public function get_posts(string $class = null, int $page = null, int $count = null): array {
+    $page  = $page  ?? $this->page;
+    $count = $count ?? $this->count;
+    $class = $class ?? $this->class;
 
-    $subdirPath = '/' . $class . '/';
+    if (!$class) {
+      return array_slice($this->posts, $count * ($page - 1), $count);
+    } else {
+      // $classを指定した場合
+      $dir    = dirname(__DIR__) . '/content/' . $class . '/';
+      $loader = new ContentLoader($dir);
+      $posts  = $loader->load();
+      return array_slice($posts, $count * ($page - 1), $count);
+    }
+  }
+
+  public function get_artworks(): array {
+    $dir  = dirname(__DIR__) . '/content/artworks.json';
+    $json = file_get_contents($dir);
+    
+    $this->artworks = json_decode($json, true);
+    $this->artworks = array_reverse($this->artworks);
+
+    return $this->artworks;
+  }
+
+  public function get_breadcrumb(): string {
+    if ($this->class === 'posts') $subdirLabel = '版画ゆうびん';
+    if ($this->class === 'identity') $subdirLabel = '制作に寄せて';
+    if ($this->class === 'info') $subdirLabel = 'お知らせ';
+    if ($this->class === 'gallery') $subdirLabel = '木版画ギャラリー';
+
+    $subdirPath = '/' . $this->class . '/';
 
     $nav = new ContentNavigation([
       'subdirLabel' => $subdirLabel,
       'subdirPath'  => $subdirPath
     ]);
 
-    return $nav->breadcrumb($article);
+    return $nav->breadcrumb($this->article);
   }
 
   public function pagination(): string {
-    $class = $this->get_page();
     $currentPage = $this->page;
-
-    if ($class === 'posts') $count = $this->postsCount;
-    else if ($class === 'info') $count = $this->infoCount;
-    else return '';
-    $totalPages  = ceil($count / $this->count);
+    $totalPages  = ceil(count($this->posts) / $this->count);
 
     $nav = new ContentNavigation();
 
@@ -111,7 +96,7 @@ class Hangakobo {
     return $parsedown->text($text);
   }
 
-  protected function get_page(): string {
+  protected function get_class(): string {
     // REQUEST_URI からクエリ文字列を除去
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 

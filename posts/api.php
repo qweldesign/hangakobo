@@ -1,11 +1,11 @@
 <?php
 // Hangakobo start!
 require_once dirname(__DIR__) . '/inc/Hangakobo.php';
-$hangakobo = new Hangakobo();
+$cms = new Hangakobo();
 
 // APIのアクセス許可
 header("Access-Control-Allow-Origin: *");
 
 // JSON出力
-echo json_encode($hangakobo->posts, JSON_UNESCAPED_UNICODE);
+echo json_encode($cms->get_posts(), JSON_UNESCAPED_UNICODE);
 return;

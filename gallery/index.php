@@ -1,7 +1,7 @@
 <?php
 // Hangakobo start!
 require_once dirname(__DIR__) . '/inc/Hangakobo.php';
-$hangakobo = new Hangakobo();
+$cms = new Hangakobo();
 ?>
 
 <!DOCTYPE html>
@@ -61,11 +61,11 @@ $hangakobo = new Hangakobo();
           <h1 class="main__title">木版画ギャラリー</h1>
           <p class="main__lead">おさのなおこの木版画ポートフォリオ。</p>
         </header>
-        <?php echo $hangakobo->breadcrumb($hangakobo->article); ?>
+        <?php echo $cms->get_breadcrumb(); ?>
       </div>
       <div class="slider" data-aspect-ratio="0.5" data-gap="144">
         <figure class="slider__inner">
-          <?php foreach ($hangakobo->artworks as $artwork) { ?>
+          <?php foreach ($cms->get_artworks() as $artwork) { ?>
             <?php if ($artwork['showOnGallery']) { ?>
               <figure class="slider__item">
                 <img class="slider__image" src="/content/artworks/<?php echo $artwork['name']; ?>s.png" alt="<?php echo $artwork['title']; ?>">

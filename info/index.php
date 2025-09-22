@@ -1,7 +1,7 @@
 <?php
 // Hangakobo start!
 require_once dirname(__DIR__) . '/inc/Hangakobo.php';
-$hangakobo = new Hangakobo();
+$cms = new Hangakobo();
 ?>
 
 <!DOCTYPE html>
@@ -9,9 +9,9 @@ $hangakobo = new Hangakobo();
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php if ($hangakobo->article) { ?>
-      <title><?php echo $hangakobo->article['title'] . ' | '; ?>お知らせ | 版画ゆうびん舎</title>
-      <meta name="description" content="<?php echo $hangakobo->article['summary']; ?>">
+    <?php if ($cms->is_single()) { ?>
+      <title><?php echo $cms->article['title'] . ' | '; ?>お知らせ | 版画ゆうびん舎</title>
+      <meta name="description" content="<?php echo $cms->article['summary']; ?>">
     <?php } else { ?>
       <title>お知らせ | 版画ゆうびん舎</title>
       <meta name="description" content="版画ゆうびん舎 おさのなおこの展示会の予定・制作実績など">
@@ -66,11 +66,11 @@ $hangakobo = new Hangakobo();
           <h1 class="main__title">お知らせ</h1>
           <p class="main__lead">おさのなおこの展示会の予定・制作実績など</p>
         </header>
-        <?php echo $hangakobo->breadcrumb($hangakobo->article); ?>
+        <?php echo $cms->get_breadcrumb(); ?>
         <div class="main__content">
-          <?php if (!$hangakobo->article) { ?>
+          <?php if (!$cms->is_single()) { ?>
             <ul class="postList postList--list">
-              <?php foreach ($hangakobo->info as $post) { ?>
+              <?php foreach ($cms->get_posts() as $post) { ?>
                 <li class="postList__item postItem">
                   <figure class="postItem__image">
                     <a href="/info/<?php echo $post['slug']; ?>/">
@@ -94,16 +94,16 @@ $hangakobo = new Hangakobo();
                 </li>
               <?php } ?>
             </ul>
-            <?php echo $hangakobo->pagination(); ?>
+            <?php echo $cms->pagination(); ?>
           <?php } else { ?>
             <article class="main__article">
-              <div class="main__date"><?php echo date('Y.m.d',strtotime($hangakobo->article['date'])); ?></div>
-              <?php echo $hangakobo->text($hangakobo->article['content']); ?>
+              <div class="main__date"><?php echo date('Y.m.d',strtotime($cms->article['date'])); ?></div>
+              <?php echo $cms->text($cms->article['content']); ?>
             </article>
             <aside class="main__aside">
               <h2 class="main__heading">最新の版画ゆうびん</h2>
               <ul class="postIndex">
-                <?php foreach ($hangakobo->posts as $post) { ?>
+                <?php foreach ($cms->get_posts('posts', 1, 4) as $post) { ?>
                   <li class="postIndex__item">
                     <a href="/posts/<?php echo $post['slug']; ?>/">
                       <img loading="razy" class="postIndex__image" src="<?php echo $post['img']; ?>">
@@ -115,7 +115,7 @@ $hangakobo = new Hangakobo();
               </ul>
               <h2 class="main__heading">最新のお知らせ</h2>
               <ul class="postIndex">
-                <?php foreach ($hangakobo->info as $post) { ?>
+                <?php foreach ($cms->get_posts('info', 1, 4) as $post) { ?>
                   <li class="postIndex__item">
                     <a href="/info/<?php echo $post['slug']; ?>/">
                       <img loading="razy" class="postIndex__image" src="<?php echo $post['img']; ?>">
