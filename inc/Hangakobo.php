@@ -1,25 +1,26 @@
 <?php
 require_once __DIR__ . '/ContentLoader.php';
+require_once __DIR__ . '/ContentNavigation.php';
 require_once __DIR__ . '/Parsedown.php';
 
 class Hangakobo {
   public function __construct() {
-    $slug  = $_GET['slug'] ?? null;
-    $count = (int)($_GET['count'] ?? 10);
-    $page  = (int)($_GET['page'] ?? 1);
+    $this->slug  = $_GET['slug'] ?? null;
+    $this->count = (int)($_GET['count'] ?? 10);
+    $this->page  = (int)($_GET['page'] ?? 1);
 
     $class = $this->get_page();
 
     // トップ階層では、最新3件の記事を取得する
     if ($class === 'top') {
-      $count = 3;
-      $page  = 1;
+      $this->count = 3;
+      $this->page  = 1;
     }
 
     // 個別記事では、最新4件の記事を取得する
-    if ($slug) {
-      $count = 4;
-      $page  = 1;
+    if ($this->slug) {
+      $this->count = 4;
+      $this->page  = 1;
     }
 
     // トップ階層、「版画ゆうびん」、「お知らせ」では、posts と info から記事を取得
@@ -29,11 +30,13 @@ class Hangakobo {
       $postsLoader = new ContentLoader($postsDir);
       $infoLoader  = new ContentLoader($infoDir);
       // posts記事取得
-      $this->posts = $postsLoader->load();
-      $this->posts = array_slice($this->posts, $count * ($page - 1), $count);
+      $this->posts      = $postsLoader->load();
+      $this->postsCount = count($this->posts);
+      $this->posts      = array_slice($this->posts, $this->count * ($this->page - 1), $this->count);
       // info記事取得
-      $this->info = $infoLoader->load();
-      $this->info = array_slice($this->info, $count * ($page - 1), $count);
+      $this->info      = $infoLoader->load();
+      $this->infoCount = count($this->info);
+      $this->info      = array_slice($this->info, $this->count * ($this->page - 1), $this->count);
     }
     
     // トップ階層では、links も取得
@@ -61,14 +64,47 @@ class Hangakobo {
       $this->artworks = array_reverse($this->artworks);
     }
 
-    // $slugがあれば、個別記事を読み込む
-    if ($slug && $class === 'posts') {
-      $this->article = $postsLoader->find($slug);
-    }
-    if ($slug && $class === 'info') {
-      $this->article = $infoLoader->find($slug);
+    // $this->slugがあれば、個別記事を読み込む
+    if ($this->slug && $class === 'posts') {
+      $this->article = $postsLoader->find($this->slug);
+    } else if ($this->slug && $class === 'info') {
+      $this->article = $infoLoader->find($this->slug);
+    } else {
+      $this->article = null;
     }
 	}
+
+  public function breadcrumb(array $article = null): string {
+    $class = $this->get_page();
+
+    if ($class === 'posts') $subdirLabel = '版画ゆうびん';
+    if ($class === 'identity') $subdirLabel = '制作に寄せて';
+    if ($class === 'info') $subdirLabel = 'お知らせ';
+    if ($class === 'gallery') $subdirLabel = '木版画ギャラリー';
+
+    $subdirPath = '/' . $class . '/';
+
+    $nav = new ContentNavigation([
+      'subdirLabel' => $subdirLabel,
+      'subdirPath'  => $subdirPath
+    ]);
+
+    return $nav->breadcrumb($article);
+  }
+
+  public function pagination(): string {
+    $class = $this->get_page();
+    $currentPage = $this->page;
+
+    if ($class === 'posts') $count = $this->postsCount;
+    else if ($class === 'info') $count = $this->infoCount;
+    else return '';
+    $totalPages  = ceil($count / $this->count);
+
+    $nav = new ContentNavigation();
+
+    return $nav->pagination($currentPage, $totalPages);
+  }
 
   public function text($text) {
     $parsedown = new Parsedown();

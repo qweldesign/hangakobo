@@ -1,7 +1,7 @@
 <?php
 
 class ContentLoader {
-	private string $dir;
+	protected string $dir;
 
 	public function __construct(string $dir) {
 		$this->dir = $dir;

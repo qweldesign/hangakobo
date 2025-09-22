@@ -60,14 +60,7 @@ $hangakobo = new Hangakobo();
         <header class="main__header">
           <h1 class="main__title">制作に寄せて</h1>
         </header>
-        <ul id="breadcrumb" class="breadcrumb">
-          <li class="breadcrumb__item">
-            <a href="/">Top</a>
-          </li>
-          <li class="breadcrumb__item is-current">
-            <span>制作に寄せて</span>
-          </li>
-        </ul>
+        <?php echo $hangakobo->breadcrumb($hangakobo->article); ?>
         <div class="main__content">
           <section class="main__section">
             <?php foreach ($hangakobo->identity as $post) { ?>

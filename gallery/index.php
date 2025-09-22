@@ -61,14 +61,7 @@ $hangakobo = new Hangakobo();
           <h1 class="main__title">木版画ギャラリー</h1>
           <p class="main__lead">おさのなおこの木版画ポートフォリオ。</p>
         </header>
-        <ul id="breadcrumb" class="breadcrumb">
-          <li class="breadcrumb__item">
-            <a href="/">Top</a>
-          </li>
-          <li class="breadcrumb__item is-current">
-            <span>木版画ギャラリー</span>
-          </li>
-        </ul>
+        <?php echo $hangakobo->breadcrumb($hangakobo->article); ?>
       </div>
       <div class="slider" data-aspect-ratio="0.5" data-gap="144">
         <figure class="slider__inner">

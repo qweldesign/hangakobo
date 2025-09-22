@@ -348,7 +348,7 @@ button, input, select, textarea {
 }
 
 /**
- * Breadcrumb
+ * Component - Breadcrumb
  */
 .breadcrumb {
   list-style: none;
@@ -631,6 +631,68 @@ button, input, select, textarea {
 }
 
 /**
+ * Component - Pagination
+ */
+.pagination {
+  list-style: none;
+  padding-inline-start: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing--small);
+  width: 100%;
+}
+.pagination__item > a {
+  display: block;
+  width: 2rem;
+  height: 3rem;
+  line-height: 3rem;
+  margin-inline: auto;
+}
+.pagination__item > a, .pagination__item > a:active {
+  border: 0;
+  border-radius: var(--spacing--x-small);
+  text-align: center;
+  text-decoration: none;
+  word-break: break-word;
+  outline: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.pagination__item > a:hover, .pagination__item > a:focus {
+  text-decoration: none;
+  transform: scale(96%);
+}
+.pagination__item > a, .pagination__item > a:active {
+  background-color: var(--color--primary);
+  color: hsl(45, 50%, 90%);
+}
+.pagination__item > a:hover, .pagination__item > a:focus {
+  background-color: var(--color--primary--active);
+  color: var(--color--darkest);
+}
+.pagination__item > a:hover, .pagination__item > a:focus {
+  box-shadow: 0 0 var(--spacing--small) var(--color--primary);
+}
+.pagination__item > span {
+  display: block;
+  width: 2rem;
+  height: 3rem;
+  line-height: 3rem;
+  margin-inline: auto;
+  border-radius: var(--spacing--x-small);
+  background-color: var(--color--primary--active);
+  color: var(--color--darkest);
+  text-align: center;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+/**
  * Component - Preloader
  */
 .preloader__overlay {
@@ -848,11 +910,13 @@ button, input, select, textarea {
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 6rem;
+  -moz-column-gap: 6rem;
+       column-gap: 6rem;
 }
 .main__article {
   width: min(100%, 36rem);
   margin-inline: auto;
+  margin-block-end: var(--spacing--large);
 }
 .main__article p {
   margin-block: var(--spacing--medium);

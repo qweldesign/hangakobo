@@ -66,23 +66,7 @@ $hangakobo = new Hangakobo();
           <h1 class="main__title">版画ゆうびん</h1>
           <p class="main__lead">おさのなおこが綴る越前海岸からの版画の便り</p>
         </header>
-        <ul id="breadcrumb" class="breadcrumb">
-          <li class="breadcrumb__item">
-            <a href="/">Top</a>
-          </li>
-          <?php if ($hangakobo->article) { ?>
-            <li class="breadcrumb__item">
-              <a href="/posts/">版画ゆうびん</a>
-            </li>
-            <li class="breadcrumb__item is-current">
-              <span><?php echo $hangakobo->article['title']; ?></span>
-            </li>
-          <?php } else { ?>
-            <li class="breadcrumb__item is-current">
-              <span>版画ゆうびん</span>
-            </li>
-          <?php } ?>
-        </ul>
+        <?php echo $hangakobo->breadcrumb($hangakobo->article); ?>
         <div class="main__content">
           <?php if (!$hangakobo->article) { ?>
             <ul class="postList postList--list">
@@ -110,6 +94,7 @@ $hangakobo = new Hangakobo();
                 </li>
               <?php } ?>
             </ul>
+            <?php echo $hangakobo->pagination(); ?>
           <?php } else { ?>
             <article class="main__article">
               <div class="main__date"><?php echo date('Y.m.d',strtotime($hangakobo->article['date'])); ?></div>

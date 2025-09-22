@@ -23,12 +23,13 @@
 
   &__content {
     @include row(flex-start, flex-start);
-    gap: 6rem;
+    column-gap: 6rem;
   }
 
   &__article {
     width: min(100%, 36rem);
     margin-inline: auto;
+    margin-block-end: space("large");
 
     p {
       margin-block: space("medium");
