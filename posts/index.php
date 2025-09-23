@@ -18,7 +18,7 @@ $cms = new Hangakobo();
     <?php } ?>
     <meta property="og:site_name" content="版画ゆうびん舎">
     <meta property="og:type" content="blog">
-    <meta property="og:image" content="https://hangakobo.com/assets/ogp.jpg">
+    <meta property="og:image" content="https://hangakobo.com/content/ogp/2025-hangakobo.jpg">
     <?php if ($cms->is_single()) { ?>
       <meta property="og:url" content="https://hangakobo.com/posts/<?php echo $cms->article['slug']; ?>/">
       <meta property="og:title" content="<?php echo $cms->article['title'] . ' | '; ?>お知らせ | 版画ゆうびん舎">

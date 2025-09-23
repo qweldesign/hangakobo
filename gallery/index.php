@@ -13,7 +13,7 @@ $cms = new Hangakobo();
     <meta name="description" content="心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たちなど、おさのなおこの木版画ポートフォリオ。">
     <meta property="og:site_name" content="版画ゆうびん舎">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="https://hangakobo.com/assets/ogp.jpg">
+    <meta property="og:image" content="https://hangakobo.com/content/ogp/2025-hangakobo.jpg">
     <meta property="og:url" content="https://hangakobo.com/gallery/">
     <meta property="og:title" content="木版画ギャラリー | 版画ゆうびん舎">
     <meta property="og:description" content="心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たちなど、おさのなおこの木版画ポートフォリオ。">
