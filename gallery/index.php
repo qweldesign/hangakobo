@@ -6,11 +6,17 @@ $cms = new Hangakobo();
 
 <!DOCTYPE html>
 <html>
-  <head>
+  <head prefix="og: https://ogp.me/ns#">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>木版画ギャラリー | 版画ゆうびん舎</title>
     <meta name="description" content="心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たちなど、おさのなおこの木版画ポートフォリオ。">
+    <meta property="og:site_name" content="版画ゆうびん舎">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://hangakobo.com/assets/ogp.jpg">
+    <meta property="og:url" content="https://hangakobo.com/gallery/">
+    <meta property="og:title" content="木版画ギャラリー | 版画ゆうびん舎">
+    <meta property="og:description" content="心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たちなど、おさのなおこの木版画ポートフォリオ。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">

@@ -6,7 +6,7 @@ $cms = new Hangakobo();
 
 <!DOCTYPE html>
 <html>
-  <head>
+  <head prefix="og: https://ogp.me/ns#">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php if ($cms->is_single()) { ?>
@@ -15,6 +15,18 @@ $cms = new Hangakobo();
     <?php } else { ?>
       <title>越前海岸からの版画ゆうびん | 版画ゆうびん舎</title>
       <meta name="description" content="版画ゆうびん舎 おさのなおこが綴る越前海岸からの版画の便り">
+    <?php } ?>
+    <meta property="og:site_name" content="版画ゆうびん舎">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://hangakobo.com/assets/ogp.jpg">
+    <?php if ($cms->is_single()) { ?>
+      <meta property="og:url" content="https://hangakobo.com/posts/<?php echo $cms->article['slug']; ?>/">
+      <meta property="og:title" content="<?php echo $cms->article['title'] . ' | '; ?>お知らせ | 版画ゆうびん舎">
+      <meta property="og:description" content="<?php echo $cms->article['summary']; ?>">
+    <?php } else { ?>
+      <meta property="og:url" content="https://hangakobo.com/posts/">
+      <meta property="og:title" content="お知らせ | 版画ゆうびん舎">
+      <meta property="og:description" content="版画ゆうびん舎 おさのなおこの展示会の予定・制作実績など">
     <?php } ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
