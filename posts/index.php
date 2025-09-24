@@ -43,7 +43,7 @@ $cms = new Hangakobo();
       gtag('config', 'G-L7RBWQL4BZ');
     </script>
   </head>
-  <body>
+  <body oncontextmenu="return false;">
     <header id="header" class="header">
       <div class="header__inner">
         <div id="gNav" class="gNav">
@@ -144,7 +144,7 @@ $cms = new Hangakobo();
     </main>
     <div class="cover"></div>
     <footer id="footer" class="footer">
-      <small class="footer__copyright"></small>
+      <div class="footer__copyright"></div>
     </footer>
     <script src="/init.js" type="module"></script>
   </body>

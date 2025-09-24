@@ -3,6 +3,10 @@
  */
 
 .footer {
+  @include container();
   padding-block: space("large");
-  text-align: center;
+
+  p {
+    @include blockquote()
+  }
 }
