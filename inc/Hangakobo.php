@@ -68,9 +68,10 @@ class Hangakobo {
 
   public function get_breadcrumb(): string {
     if ($this->class === 'posts') $subdirLabel = '版画ゆうびん';
-    if ($this->class === 'identity') $subdirLabel = '制作に寄せて';
+    if ($this->class === 'about') $subdirLabel = '制作に寄せて';
     if ($this->class === 'info') $subdirLabel = 'お知らせ';
     if ($this->class === 'gallery') $subdirLabel = '木版画ギャラリー';
+    if ($this->class === 'class') $subdirLabel = '版画教室';
 
     $subdirPath = '/' . $this->class . '/';
 

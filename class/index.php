@@ -9,14 +9,14 @@ $cms = new Hangakobo();
   <head prefix="og: https://ogp.me/ns#">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>制作に寄せて | 版画ゆうびん舎</title>
-    <meta name="description" content="版画のモチーフは、心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たち。大切な方へお便りを出すような心地で、一枚一枚版画を制作しています。">
+    <title>版画教室 | 版画ゆうびん舎</title>
+    <meta name="description" content="身近な題材をテーマに下絵を作成し、比較的易しい技法でハガキサイズの素朴な作品を作っていく木版画講座です。大切な方への手紙を添えるような気持ちで、あなたも版画を制作してみませんか。">
     <meta property="og:site_name" content="版画ゆうびん舎">
     <meta property="og:type" content="article">
     <meta property="og:image" content="https://hangakobo.com/content/ogp/2025-hangakobo.jpg">
-    <meta property="og:url" content="https://hangakobo.com/identity/">
-    <meta property="og:title" content="制作に寄せて | 版画ゆうびん舎">
-    <meta property="og:description" content="版画のモチーフは、心に残った風景、身近な動植物、変哲の無い日用品、天使や架空の動物たち。大切な方へお便りを出すような心地で、一枚一枚版画を制作しています。">
+    <meta property="og:url" content="https://hangakobo.com/class/">
+    <meta property="og:title" content="版画教室 | 版画ゆうびん舎">
+    <meta property="og:description" content="身近な題材をテーマに下絵を作成し、比較的易しい技法でハガキサイズの素朴な作品を作っていく木版画講座です。大切な方への手紙を添えるような気持ちで、あなたも版画を制作してみませんか。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
@@ -43,10 +43,11 @@ $cms = new Hangakobo();
           </div>
           <ul class="gNav__primaryMenu">
             <li class="gNav__menuItem"><a href="/posts/">版画ゆうびん</a></li>
-            <li class="gNav__menuItem"><a href="/identity/">制作に寄せて</a></li>
+            <li class="gNav__menuItem"><a href="/about/">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/info/">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
             <li class="gNav__menuItem"><a href="/gallery/">木版画ギャラリー</a></li>
+            <li class="gNav__menuItem"><a href="/class/">版画教室</a></li>
             <li class="gNav__menuItem"><a href="/#links">リンク集</a></li>
             <li class="gNav__menuItem"><a href="/#contact">お問い合わせ</a></li>
           </ul>
@@ -64,7 +65,7 @@ $cms = new Hangakobo();
     <main id="main" class="main">
       <div class="main__container">
         <header class="main__header">
-          <h1 class="main__title">制作に寄せて</h1>
+          <h1 class="main__title">版画教室</h1>
         </header>
         <?php echo $cms->get_breadcrumb(); ?>
         <div class="main__content">

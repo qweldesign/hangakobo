@@ -43,10 +43,11 @@ $cms = new Hangakobo();
           </h1>
           <ul class="gNav__primaryMenu">
             <li class="gNav__menuItem"><a href="/#posts">版画ゆうびん</a></li>
-            <li class="gNav__menuItem"><a href="/#identity">制作に寄せて</a></li>
+            <li class="gNav__menuItem"><a href="/#about">制作に寄せて</a></li>
             <li class="gNav__menuItem"><a href="/#info">お知らせ</a></li>
             <li class="gNav__menuItem"><a href="/#products">商品のご案内</a></li>
             <li class="gNav__menuItem"><a href="/#gallery">木版画ギャラリー</a></li>
+            <li class="gNav__menuItem"><a href="/#class">版画教室</a></li>
             <li class="gNav__menuItem"><a href="/#links">リンク集</a></li>
             <li class="gNav__menuItem"><a href="/#contact">お問い合わせ</a></li>
           </ul>
@@ -101,12 +102,12 @@ $cms = new Hangakobo();
           </div>
         </div>
       </section>
-      <section id="identity" class="section">
+      <section id="about" class="section">
         <div class="section__container">
           <h2 class="section__title">制作に寄せて</h2>
           <div class="mediaText">
             <figure class="mediaText__media">
-              <img loading="razy" src="/content/artworks/artworkM094s.png" alt="至上善">
+              <img loading="razy" src="/content/artworks/artworkF033s.png" alt="海">
             </figure>
             <div class="mediaText__content">
               <p>版画のモチーフは、
@@ -114,7 +115,7 @@ $cms = new Hangakobo();
                 <br>変哲の無い日用品、天使や架空の動物たち。
                 <br>大切な方へお便りを出すような心地で、
                 <br>一枚一枚制作しています。</p>
-              <a class="button button--primary button--sm my-medium" href="/identity/">もっと詳しく</a>
+              <a class="button button--primary button--sm my-medium" href="/about/">もっと詳しく</a>
           </div>
         </div> 
       </section>
@@ -197,6 +198,22 @@ $cms = new Hangakobo();
           <a href="/gallery/">作品をもっと見る &gt;</a>
         </div>
       </section>
+      <section id="class" class="section">
+        <div class="section__container">
+          <h2 class="section__title">版画教室</h2>
+          <div class="mediaText">
+            <figure class="mediaText__media">
+              <img loading="razy" src="/content/artworks/artworkM034s.png" alt="祈り">
+            </figure>
+            <div class="mediaText__content">
+              <p>身近な題材をテーマに下絵を作成し、
+                <br>比較的易しい技法でハガキサイズの素朴な作品を作っていく木版画講座です。
+                <br>大切な方への手紙を添えるような気持ちで、
+                <br>あなたも版画を制作してみませんか。</p>
+              <a class="button button--primary button--sm my-medium" href="/class/">もっと詳しく</a>
+          </div>
+        </div> 
+      </section>
       <section id="links" class="section">
         <div class="section__container">
           <h2 class="section__title">リンク集</h2>
@@ -239,8 +256,9 @@ $cms = new Hangakobo();
                 <th><label for="yoursubject">題名</label></th>
                 <td>
                   <select id="yoursubject" name="題名">
-                    <option value="ご質問・お問い合わせ">ご質問・お問い合わせ</option>
-                    <option value="その他">その他</option>
+                    <option value="版画教室・体験に関するお問い合わせ">版画教室・体験に関するお問い合わせ</option>
+                    <option value="版画制作・作画に関するお問い合わせ">版画制作・作画に関するお問い合わせ</option>
+                    <option value="ご質問・ご意見・その他">ご質問・ご意見・その他</option>
                   </select>
                 </td>
               </tr>
