@@ -2,6 +2,18 @@
 import ActionCore from './js/action-core.js';
 new ActionCore.Preset();
 
+// Fader
+import Fader from './js/fader.js';
+new Fader();
+
+// Modal
+import Modal from './js/modal.js';
+new Modal();
+
+// Slider
+import Slider from './js/slider.js';
+new Slider();
+
 /**
  * Auto Copyright
  * © 2026 QWEL.DESIGN (https://qwel.design)
