@@ -18,6 +18,10 @@ new Artwork();
 import Clock from './js/clock.js';
 new Clock();
 
+// Contact Form
+import ContactForm from './js/contact-form.js';
+new ContactForm();
+
 /**
  * Auto Copyright
  * © 2026 QWEL.DESIGN (https://qwel.design)

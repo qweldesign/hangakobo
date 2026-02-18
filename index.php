@@ -242,7 +242,7 @@ $cms = new Hangakobo();
         <div class="section__container">
           <h2 class="section__title">お問い合わせ</h2>
           <p class="text-center">ご質問・ご相談などございましたら、下記のフォームよりお気軽にお問い合わせください。</p>
-          <form class="form">
+          <form class="form" data-contact-form>
             <table class="form__table">
               <tr>
                 <th><label for="your-name">お名前<span class="is-required">*必須</span></label></th>
