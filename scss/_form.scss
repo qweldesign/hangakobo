@@ -7,24 +7,42 @@
   text-align: center;
 
   table {
-    @include table();
-    margin-block-end: space("medium");
-    text-align: left;
+    width: min(100%, 48rem);
+    margin: space("medium") auto;
+
+    thead, tbody {
+      width: 100%;
+    }
+
+    thead {
+      border: 0; // Reset
+    }
+
+    th, td {
+      padding: space();
+      border: 0; // Reset
+    }
 
     th {
       width: 12rem;
     }
 
+    @media (max-width: breakpoint("sm") - 0.1px) {
+      &, thead, tbody, tr, th, td {
+        display: block;
+      }
+    }
+
     input, select, textarea {
       border: none;
       border-radius: space("x-small");
-      background-color: rgba(map-get($colors, $theme-accent), 0.05);
+      background-color: #fff;
     }
   }
 
   [type="submit"] {
     display: inline-block;
-    width: 14rem;
+    width: 10.5rem;
     height: 3.5rem;
     line-height: 3.5rem;
     margin-inline: space();

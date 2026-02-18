@@ -1,21 +1,103 @@
 /**
- * Main
+ * Project - Main
  */
 
 .main {
   &__container {
-    @include container("md");
+    @include container();
   }
 
-  &__row {
+  &__header {
+    padding-block: space("large");
+    border-bottom: 1px dotted theme-color("dark");
+    text-align: center;
+  }
+
+  &__title {
+    font-size: font-size("x-large");
+  }
+
+  &__heading {
+    font-size: font-size("large");
+  }
+
+  &__content {
     @include row(flex-start, flex-start);
+    column-gap: 6rem;
   }
 
   &__article {
-    @include col(6, false, "md");
+    width: min(100%, 36rem);
+    margin-inline: auto;
+    margin-block-end: space("large");
+
+    p {
+      margin-block: space("medium");
+      text-align: justify;
+    }
+
+    p:has(img) {
+      text-align: center;
+
+      @media (min-width: breakpoint("sm")) {
+        height: min(60vw, 24rem);
+        overflow: hidden;
+
+        img:not(.img-full) {
+          display: inline-block;
+          width: auto;
+          height: 100%;
+        }        
+      }
+    }
+
+    ul:has(img) {
+      @include list-unstyled();
+      text-align: center;
+    }
+
+    li:has(img) {
+      display: inline-block;
+      width: fit-content;
+      height: min(45vw, 18rem);
+      margin-inline: space("medium");
+      
+      img {
+        display: inline-block;
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    .img-full {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: space("medium") auto;
+    }
+
+    video {
+      display: block;
+      width: min(100%, 36rem);
+      height: auto;
+      margin: space("medium") auto;
+    }
   }
 
-  &__aside {
-    @include col(3, false, "md");
+  &__date {
+    margin-block: space();
+
+    + h2 {
+      margin-block: space();
+    }
+  }
+
+  aside {
+    width: min(100%, 24rem);
+    margin-inline: auto;
+
+    @media (min-width: breakpoint("lg")) {
+      width: 12rem;
+    }
   }
 }

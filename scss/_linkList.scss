@@ -1,0 +1,68 @@
+/**
+ * Project - Link List
+ */
+
+.linkList {
+  @include list-unstyled();
+  @include row(flex-start, stretch);
+  gap: space();
+
+  &__item {
+    flex: 1 1 100%;
+
+    @media (min-width: breakpoint("md")) {
+      flex: 0 1 calc(50% - #{space()} / 2);
+    }
+  }
+
+  &__link {
+    display: block;
+    height: 100%;
+    padding: 0.5rem;
+    background-color: theme-color("primary");
+    opacity: 0.85;
+    transition: opacity 0.25s ease;
+
+    &:hover, &:focus {
+      text-decoration: none;
+      opacity: 1;
+    }
+  }
+
+  &__inner {
+    @include row();
+    height: 100%;
+    border: 1px solid theme-color("lightest");
+  }
+
+  &__image {
+    flex: 0 0 30%;
+    order: 2;
+    margin: 0;
+    padding: 0.5rem;
+  }
+
+  &__content {
+    flex: 0 0 70%;
+    order: 1;
+    color: theme-color("lightest");
+    font-size: font-size("small");
+    text-align: center;
+
+    @media (min-width: breakpoint("sm")) {
+      font-size: font-size("normal");
+    }
+  }
+
+  &__title {
+    margin-block: space();
+    font-size: 1.25em;
+  }
+
+  &__summary {
+    width: min(100%, 24rem);
+    margin-inline: auto;
+    padding-inline: 0.5rem;
+    font-size: 0.83em;
+  }
+}

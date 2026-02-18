@@ -15,6 +15,7 @@ $drawer-navicon-color:       $icon-color !default;
 $drawer-navicon-hover-bg:    $icon-hover-bg !default;
 $drawer-navicon-hover-color: $icon-hover-color !default;
 $drawer-site-brand-width:    6rem !default;
+$drawer-image-filter:        invert(1) grayscale(1) brightness(4) !default; 
 
 .drawer {
   position: fixed;
@@ -151,6 +152,7 @@ $drawer-site-brand-width:    6rem !default;
 
       img {
         width: $drawer-site-brand-width;
+        filter: $drawer-image-filter;
       }
     }
 

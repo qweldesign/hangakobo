@@ -1,17 +1,22 @@
-// Vue
-import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.0/vue.esm-browser.prod.js';
+// Preloader
+import Preloader from './js/preloader.js';
+new Preloader();
 
 // Action Core
 import ActionCore from './js/action-core.js';
-
-// Fader
-import Fader from './js/fader.js';
-
-// Modal
-import Modal from './js/modal.js';
+new ActionCore.Preset();
 
 // Slider
 import Slider from './js/slider.js';
+new Slider();
+
+// Artwork
+import Artwork from './js/artwork.js';
+new Artwork();
+
+// Clock
+import Clock from './js/clock.js';
+new Clock();
 
 /**
  * Auto Copyright
@@ -27,139 +32,9 @@ class AutoCopyright {
 
   generate(startYear, companyName) {
     const currentYear = new Date().getFullYear();
-    return `&copy; ${startYear} - ${currentYear} ${companyName}`;
+    const text = ' All rights reserved.<br><p><span>警告:</span> 当サイトに掲載の全ての画像・文章・デザイン・レイアウトは著作権法により保護されています。著作権者の許諾を得ずに複製、転載、加工、頒布、販売することを禁じます。違反した場合、民事・刑事上の責任を追及します。使用許可は事前に書面で取得してください。<br><span>Warning:</span> All images, text, designs, and layouts on this website are protected under copyright law. Any reproduction, redistribution, modification, distribution, or sale without the copyright holder’s permission is strictly prohibited. In the event of a violation, civil and criminal liability will be pursued. Written permission must be obtained in advance for any use.</p>';
+    return `&copy; ${startYear} - ${currentYear} ${companyName}${text}`;
   }
 }
 
-const data = {
-  data() {
-    return {
-      sections: {
-        feature: {
-          id: 'feature',
-          name: 'feature',
-          items: [
-            {
-              heading: 'feature-1',
-              src: './assets/sampleImg00.jpg'
-            },
-            {
-              heading: 'feature-2',
-              src: './assets/sampleImg01.jpg'
-            },
-            {
-              heading: 'feature-3',
-              src: './assets/sampleImg02.jpg'
-            },
-            {
-              heading: 'feature-4',
-              src: './assets/sampleImg03.jpg'
-            }
-          ]
-        },
-        about: {
-          id: 'about',
-          name: 'about',
-          heading: 'Mission',
-          excerpt: 'Our mission is ...',
-          src: './assets/sampleImg01.jpg',
-          more: 'read more'
-        },
-        service: {
-          id: 'service',
-          name: 'service',
-          more: 'read more',
-          items: [
-            {
-              date: '2025-04-01',
-              heading: 'service-1',
-              tags: ['news', 'info'],
-              excerpt: 'Today is ...',
-              src: './assets/sampleImg02.jpg'
-            },
-            {
-              date: '2025-04-02',
-              heading: 'service-2',
-              tags: ['news'],
-              excerpt: 'Today is ...',
-              src: './assets/sampleImg03.jpg'
-            },
-            {
-              date: '2025-04-03',
-              heading: 'service-3',
-              tags: ['info'],
-              excerpt: 'Today is ...',
-              src: './assets/sampleImg04.jpg'
-            }
-          ]
-        },
-        news: {
-          id: 'news',
-          name: 'news',
-          more: 'read more',
-          items: [
-          {
-              date: '2025-04-01',
-              heading: 'news-1',
-              tags: ['news', 'info'],
-              excerpt: 'Today is ...',
-              src: './assets/sampleImg03.jpg'
-            },
-            {
-              date: '2025-04-02',
-              heading: 'news-2',
-              tags: ['news'],
-              excerpt: 'Today is ...',
-              src: './assets/sampleImg04.jpg'
-            },
-            {
-              date: '2025-04-03',
-              heading: 'news-3',
-              tags: ['info'],
-              excerpt: 'Today is ...',
-              src: './assets/sampleImg05.jpg'
-            }
-          ]
-        },
-        team: {
-          id: 'team',
-          name: 'team',
-          heading: 'Mission',
-          excerpt: 'Our mission is ...',
-          src: './assets/sampleImg04.jpg',
-          more: 'read more'
-        },
-        access: {
-          id: 'access',
-          name: 'access',
-          src: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d3227.2986434445115!2d135.99!3d36.013!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1768971157714!5m2!1sja!2sjp'
-        },
-        contact: {
-          id: 'contact',
-          name: 'contact',
-          description: 'サンプルデモであるため、このフォームは機能しません。'
-        }
-      },
-      social: {
-        x: true,
-        facebook: true,
-        instagram: true,
-        youtube: false
-      }
-    };
-  },
-  mounted() {
-    this.init();
-  },
-  methods: {
-    init() {
-      new ActionCore.Preset();
-      new Fader();
-      new Modal();
-      new Slider();
-      new AutoCopyright(2019, 'QWEL.DESIGN');
-    }
-  }
-}
-
-createApp(data).mount('#app');
+new AutoCopyright(2007, 'Osano Naoko');

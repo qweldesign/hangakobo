@@ -8,8 +8,8 @@
   .postItem {
     &__image {
       img {
-        aspect-ratio: $img-aspect-ratio;
-        object-fit: cover;
+        aspect-ratio: 1;
+        object-fit: contain;
       }
     }
 
@@ -52,7 +52,7 @@
     .postList__item {
       margin-block-end: space("medium");
       padding-block-end: space("medium");
-      border-block-end: 1px solid theme-color('dark');
+      border-block-end: 1px dotted theme-color('dark');
 
       &:last-child {
         border: 0;
@@ -64,6 +64,7 @@
 
       &__image {
         @include col(3, ture);
+        max-width: 18rem;
         margin: 0;
       }
 
@@ -72,7 +73,24 @@
       }
 
       &__more {
+        display: block;
         text-align: right;
+      }
+    }
+  }
+
+  &.is-switched {
+    .postItem{
+      &__image {
+        order: 2;
+      }
+
+      &__content {
+        order: 1;
+      }
+
+      &__more {
+        text-align: left;
       }
     }
   }

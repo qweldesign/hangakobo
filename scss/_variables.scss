@@ -1,2 +1,40 @@
 // Variables
 
+$colors: (
+  "primary":   hsl(220, 50%, 30%),
+  "secondary": hsl(30, 85%, 50%)
+);
+
+$body-bg:    hsl(45, 50%, 90%);
+
+$grid-base:            5.33rem;
+
+$breakpoints:        (
+  sm:                  600px,
+  md:                  800px,
+  lg:                  1000px
+);
+
+$container-widths:   (
+  sm:                  600px,
+  md:                  800px,
+  lg:                  1000px
+);
+
+$gutter:             $grid-base / 8;
+$container-pads:     (
+  sm:                  $gutter,
+  md:                  clamp(#{$gutter}, 2%, #{$grid-base / 6}), // 16px
+  lg:                  clamp(#{$gutter}, 2%, #{$grid-base / 4.8}) // 20px
+);
+
+$font-family-sans:     "Zen Kaku Gothic New", sans-serif;
+$font-weight-sans:     500;
+
+$drawer-always-shown:  true;
+
+$spinner-bars-bg:      #000;
+
+$slider-aspect-ratio:  0.5;
+$slider-break-point:   600px;
+$slider-height:        30rem;
