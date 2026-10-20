@@ -126,6 +126,7 @@ const SITE_PRETTY_URLS = true;
 
 // 投稿タイプ以外のページ (サイトのルートからのパス. サイトマップに載せる)
 const SITE_PAGES = [
+  'gallery/',
 ];
 
 // トップページ・ギャラリーの設定 (サイトのルートからのパス)
