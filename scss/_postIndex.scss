@@ -11,7 +11,7 @@
     flex: 0 1 calc(50% - #{space("medium")} / 2);
   }
 
-  @media (min-width: breakpoint("md")) {
+  @media (min-width: breakpoint("lg")) {
     display: block;
   }
 
