@@ -949,6 +949,73 @@ button, input, select, textarea {
 .main__content > nav {
   width: 100%;
 }
+.main__article {
+  width: min(100%, 36rem);
+  margin-inline: auto;
+  margin-block-end: var(--spacing--large);
+}
+.main__article p {
+  margin-block: var(--spacing--medium);
+  text-align: justify;
+}
+.main__article p:has(img) {
+  text-align: center;
+}
+@media (min-width: 600px) {
+  .main__article p:has(img) {
+    height: min(60vw, 24rem);
+    overflow: hidden;
+  }
+  .main__article p:has(img) img:not(.img-full) {
+    display: inline-block;
+    width: auto;
+    height: 100%;
+  }
+}
+.main__article ul:has(img) {
+  list-style: none;
+  padding-inline-start: 0;
+  text-align: center;
+}
+.main__article li:has(img) {
+  display: inline-block;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: min(45vw, 18rem);
+  margin-inline: var(--spacing--medium);
+}
+.main__article li:has(img) img {
+  display: inline-block;
+  width: auto;
+  height: 100%;
+}
+.main__article .img-full {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: var(--spacing--medium) auto;
+}
+.main__article video {
+  display: block;
+  width: min(100%, 36rem);
+  height: auto;
+  margin: var(--spacing--medium) auto;
+}
+.main__date {
+  margin-block: var(--spacing--small);
+}
+.main__date + h2 {
+  margin-block: var(--spacing--small);
+}
+.main aside {
+  width: min(100%, 24rem);
+  margin-inline: auto;
+}
+@media (min-width: 1000px) {
+  .main aside {
+    width: 12rem;
+  }
+}
 
 /**
  * Project - Section
@@ -1126,7 +1193,7 @@ button, input, select, textarea {
 .postIndex > * {
   flex: 0 1 calc(50% - var(--spacing--medium) / 2);
 }
-@media (min-width: 800px) {
+@media (min-width: 1000px) {
   .postIndex {
     display: block;
   }
