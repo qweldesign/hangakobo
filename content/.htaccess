@@ -1,3 +1,8 @@
+# content/ は別リポジトリで管理する (このリポジトリには .htaccess だけを置く)
 # Markdown の原稿は直接公開しない (テンプレート経由で表示する)
-# ※ content/images/ だけは, そのディレクトリの .htaccess で画像の公開を許可している
 Require all denied
+
+# 画像と, ヒーロー画像の選択に使う artworks.json (js/artwork.js が読む) だけは公開する
+<FilesMatch "(?i:\.(jpe?g|png|gif|webp|avif|svg)|^artworks\.json)$">
+  Require all granted
+</FilesMatch>

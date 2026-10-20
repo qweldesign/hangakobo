@@ -33,15 +33,19 @@ function post_type(string $type): array {
   if (!isset(SITE_POST_TYPES[$type])) {
     throw new InvalidArgumentException("投稿タイプ {$type} は config.php にありません");
   }
-  return SITE_POST_TYPES[$type] + [
-    'label'     => $type,
-    'path'      => $type . '/',
-    'dir'       => 'content/' . $type,
-    'count'     => 10,
-    'show_date' => true,
-    'lead'      => '',
-    'list'      => true,
+  $config = SITE_POST_TYPES[$type] + [
+    'label'      => $type,
+    'path'       => $type . '/',
+    'dir'        => 'content/' . $type,
+    'count'      => 10,
+    'show_date'  => true,
+    'lead'       => '',
+    'list'       => true,
+    'breadcrumb' => true,
+    'aside'      => [$type],
   ];
+  // title, description は label, lead を既定にする
+  return $config + ['title' => $config['label'], 'description' => $config['lead']];
 }
 
 // 投稿タイプの一覧・記事・ページ送りのパス (サイトのルートからのパス. canonical などに使う)
@@ -102,7 +106,8 @@ function content_engine(string $type, array $options = []): ContentEngine {
     'baseUrl' => path(),
     'navigation' => [
       'parents'      => $parents,
-      'subdirLabel'  => $config['label'],
+      // breadcrumb が false の投稿タイプ (固定ページなど) は, 一覧の階層を出さない
+      'subdirLabel'  => $config['breadcrumb'] ? $config['label'] : null,
       'subdirPath'   => type_url($type),
       'pageUrl'      => page_url($type, '%d'),
       'firstPageUrl' => type_url($type),

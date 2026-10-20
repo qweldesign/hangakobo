@@ -28,26 +28,30 @@
 
 // Layout
 @import "header";
-@import "main";
+@import "gNav";
 @import "footer";
 
 // Components
+@import "preloader";
 @import "icon";
-@import "button";
-@import "embed";
-@import "breadcrumb";
-@import "pagination";
 @import "backToTop";
+@import "breadcrumb";
+@import "button";
+@import "cover";
 @import "drawerMenu";
-@import "fader";
-@import "modal";
+@import "pagination";
 @import "slider";
 
 // Projects
-@import "postItem";
+@import "hero";
+@import "main";
+@import "section";
 @import "postList";
+@import "postItem";
 @import "postIndex";
-@import "postNav";
+@import "mediaText";
+@import "clock";
+@import "linkList";
 @import "form";
 
 // Utility

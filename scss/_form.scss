@@ -7,24 +7,42 @@
   text-align: center;
 
   table {
-    @include table();
-    margin-block-end: space("medium");
-    text-align: left;
+    width: min(100%, 48rem);
+    margin: space("medium") auto;
+
+    thead, tbody {
+      width: 100%;
+    }
+
+    thead {
+      border: 0; // Reset
+    }
+
+    th, td {
+      padding: space();
+      border: 0; // Reset
+    }
 
     th {
       width: 12rem;
     }
 
+    @media (max-width: breakpoint("sm") - 0.1px) {
+      &, thead, tbody, tr, th, td {
+        display: block;
+      }
+    }
+
     input, select, textarea {
       border: none;
       border-radius: space("x-small");
-      background-color: rgba(map-get($colors, $theme-accent), 0.05);
+      background-color: #fff;
     }
   }
 
   [type="submit"] {
     display: inline-block;
-    width: 14rem;
+    width: 10.5rem;
     height: 3.5rem;
     line-height: 3.5rem;
     margin-inline: space();
@@ -33,19 +51,41 @@
   }
 }
 
-// ラジオボタン・チェックボックスの選択肢
-.form__choices {
-  @include list-unstyled();
-  margin: 0;
+.confirm, .thanks {
+  width: min(100%, 48rem);
+  margin: space("medium") auto;
+  text-align: center;
+}
 
-  li {
-    margin-block: 0 space("x-small");
+.confirm {
+  table {
+    @include table();
+    margin-block-end: space("large");
+
+    th {
+      width: 12rem;
+    }
+
+    td {
+      text-align: left;
+    }
   }
 
-  label {
-    display: inline-flex;
-    align-items: center;
-    gap: space("x-small");
+  [type="submit"], [type="button"] {
+    display: inline-block;
+    width: 14rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    margin-inline: space();
+    @include make-button();
+  }
+
+  [type="submit"] {
+    @include make-button-color-normal("primary");
+  }
+  
+  [type="button"] {
+    @include make-button-color-normal("secondary");
   }
 }
 
@@ -58,62 +98,11 @@
   overflow: hidden;
 }
 
-// 確認画面
-.confirm {
-  text-align: center;
-
-  .main__lead {
-    text-align: left;
-  }
-
-  table {
-    @include table();
-    margin-block-end: space("medium");
-    text-align: left;
-
-    th {
-      width: 12rem;
-    }
-
-    td {
-      white-space: pre-wrap; // 本文の改行をそのまま表示する
-      overflow-wrap: anywhere;
-    }
-  }
-
-  // 送信エラーなどのメッセージ
-  &__message {
-    margin-block: 0 space("medium");
-    padding: space();
-    border-radius: space("x-small");
-    background-color: rgba(map-get($colors, "secondary"), 0.15);
-    white-space: pre-line;
-  }
-
-  [type="submit"], [type="button"] {
-    display: inline-block;
-    width: 14rem;
-    height: 3.5rem;
-    line-height: 3.5rem;
-    margin: 0 space() space();
-    @include make-button();
-  }
-
-  [type="submit"] {
-    @include make-button-color-normal("primary");
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: wait;
-    }
-  }
-
-  [type="button"] {
-    @include make-button-color-normal("secondary");
-  }
-}
-
-// 完了画面
-.thanks {
-  text-align: center;
+// 確認画面の送信エラーなどのメッセージ
+.confirm__message {
+  margin-block: 0 space("medium");
+  padding: space();
+  border-radius: space("x-small");
+  background-color: rgba(map-get($colors, "secondary"), 0.15);
+  white-space: pre-line;
 }
