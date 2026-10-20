@@ -10,7 +10,7 @@
  *
  * 使い方 (一覧を置くディレクトリの index.php):
  *   require_once __DIR__ . '/inc/templates/posts.php';
- *   render_posts('blog');
+ *   render_posts('posts');
  */
 
 require_once __DIR__ . '/postList.php';
@@ -18,14 +18,15 @@ require_once __DIR__ . '/postList.php';
 /**
  * $type: 投稿タイプ (config.php の SITE_POST_TYPES のキー)
  * $options:
- *   intro: 一覧の1ページ目の見出しの代わりに出力する関数 (トップページの紹介文など)
- *   latest: 個別記事の横に並べる最新記事の件数 (規定で 4. 0 で出さない)
- *   adjacent: 個別記事の下に前後の記事へのリンクを出すか (規定で true)
- *   description: 一覧ページの description (規定で lead)
+ *   layout: 'post' (規定. 見出しは投稿タイプの名前, 記事の横に最新記事)
+ *           'page' (固定ページ. 見出しはページのタイトル, frontmatter の sections の段落を並べる)
+ *   latest: 個別記事の横に並べる最新記事の件数 (規定で 4. 並べる投稿タイプは config.php の aside)
+ *   preloader: 読み込み中の画面を出すか (規定で layout が page のとき)
  */
 function render_posts(string $type, array $options = []): void {
   $config = post_type($type);
   $label  = $config['label'];
+  $isPage = ($options['layout'] ?? 'post') === 'page';
   $latest = $options['latest'] ?? 4;
   $cms = content_engine($type);
 
@@ -37,7 +38,7 @@ function render_posts(string $type, array $options = []): void {
 
   if ($cms->is_found()) {
     $page = [
-      'title'       => $cms->get_title(),
+      'title'       => $isPage ? $cms->get_title() : $cms->get_title() . ' | ' . $config['title'],
       'description' => $cms->get_meta('summary'),
       'path'        => post_path($type, ['slug' => $cms->get_meta('slug')]),
       'image'       => $cms->get_meta('img'),
@@ -45,74 +46,70 @@ function render_posts(string $type, array $options = []): void {
   } else {
     $pageNumber = $cms->get_page();
     $page = [
-      'title'       => $notFound ? 'ページが見つかりません' : ($pageNumber > 1 ? "{$label} ({$pageNumber}ページ目)" : ($config['path'] === '' ? '' : $label)),
-      'description' => $options['description'] ?? $config['lead'],
+      'title'       => $notFound ? 'ページが見つかりません' : ($pageNumber > 1 ? "{$config['title']} ({$pageNumber}ページ目)" : $config['title']),
+      'description' => $config['description'],
       'path'        => page_path($type, $pageNumber),
-      'type'        => $config['path'] === '' && $pageNumber === 1 ? 'website' : 'article',
       'noindex'     => $notFound,
     ];
+  }
+  $page['preloader'] = $options['preloader'] ?? $isPage;
+
+  // 見出し (固定ページはページのタイトル, それ以外は投稿タイプの名前)
+  if ($notFound) {
+    $heading = 'ページが見つかりません';
+    $lead = '';
+  } elseif ($isPage && $cms->is_found()) {
+    $heading = $cms->get_title();
+    $lead = $cms->get_meta('lead');
+  } else {
+    $heading = $label;
+    $lead = $config['lead'];
   }
 
   render_header($page);
 ?>
     <main id="main" class="main">
-      <?= $cms->get_breadcrumb() ?>
-<?php if ($cms->is_found()) { ?>
-<?php if ($latest > 0) { ?>
-      <div class="main__row">
-        <article class="main__article">
-<?php } else { ?>
-      <div>
-        <article>
+      <div class="main__container">
+        <header class="main__header">
+          <h1 class="main__title"><?= e($heading) ?></h1>
+<?php if ($lead) { ?>
+          <p class="main__lead"><?= e($lead) ?></p>
 <?php } ?>
-          <h1 class="main__title"><?= e($cms->get_title()) ?></h1>
-<?php if ($config['show_date'] && $cms->get_meta('date')) { ?>
-          <p class="main__date"><?= date_tag($cms->get_meta('date')) ?></p>
-<?php } ?>
-          <div class="entry">
-<?= $cms->get_content() ?>
+        </header>
+        <?= $cms->get_breadcrumb() ?>
+        <div class="main__content">
+<?php if ($notFound) { ?>
+          <div class="main__article">
+            <p>お探しのページは、削除されたか、URLが変更された可能性があります。</p>
+            <p><a href="<?= e($isPage ? path() : type_url($type)) ?>"><?= e($isPage ? 'トップ' : $label . 'の一覧') ?>へ</a></p>
           </div>
-<?php if ($options['adjacent'] ?? true) { ?>
-<?php $adjacent = $cms->get_adjacent(); ?>
-          <nav class="postNav" aria-label="前後の記事">
-<?php if ($adjacent['prev']) { ?>
-            <a class="postNav__link is-prev" href="<?= e(post_url($type, $adjacent['prev'])) ?>">
-              <span class="postNav__label">新しい記事</span>
-              <span class="postNav__title"><?= e($adjacent['prev']['title'] ?? '') ?></span>
-            </a>
+<?php } elseif ($cms->is_found() && $isPage) { ?>
+<?php if (trim($cms->get_meta('content')) !== '') { ?>
+          <article class="main__article">
+<?= $cms->get_content() ?>
+          </article>
 <?php } ?>
-<?php if ($adjacent['next']) { ?>
-            <a class="postNav__link is-next" href="<?= e(post_url($type, $adjacent['next'])) ?>">
-              <span class="postNav__label">前の記事</span>
-              <span class="postNav__title"><?= e($adjacent['next']['title'] ?? '') ?></span>
-            </a>
+<?php } elseif ($cms->is_found()) { ?>
+          <article class="main__article">
+<?php if ($config['show_date'] && $cms->get_meta('date')) { ?>
+            <div class="main__date"><?= date_tag($cms->get_meta('date')) ?></div>
 <?php } ?>
-          </nav>
+<?= $cms->get_content() ?>
+          </article>
+<?php if ($latest > 0 && $config['aside']) { ?>
+          <aside class="main__aside">
+<?php foreach ($config['aside'] as $asideType) { ?>
+            <h2 class="main__heading">最新の<?= e(post_type($asideType)['label']) ?></h2>
+<?php render_post_index(content_engine($asideType, ['slug' => null, 'page' => 1])->get_posts(1, $latest), $asideType); ?>
 <?php } ?>
-        </article>
-<?php if ($latest > 0) { ?>
-        <aside class="main__aside">
-          <h2>最新記事</h2>
-<?php render_post_index($cms->get_posts(1, $latest), $type); ?>
-        </aside>
+          </aside>
 <?php } ?>
-      </div>
-<?php } elseif ($notFound) { ?>
-      <h1 class="main__title">ページが見つかりません</h1>
-      <p>お探しのページは、削除されたか、URLが変更された可能性があります。</p>
-      <p><a href="<?= e(type_url($type)) ?>"><?= e($label) ?>の一覧へ</a></p>
 <?php } else { ?>
-<?php if (isset($options['intro']) && $cms->get_page() === 1) { ?>
-<?php $options['intro'](); ?>
-<?php } else { ?>
-      <h1 class="main__title"><?= e($label) ?></h1>
-<?php if ($config['lead']) { ?>
-      <p class="main__lead"><?= e($config['lead']) ?></p>
-<?php } ?>
-<?php } ?>
 <?php render_post_list($cms->get_posts(), $type); ?>
-      <?= $cms->pagination() ?>
+          <?= $cms->pagination() ?>
 <?php } ?>
+        </div>
+      </div>
     </main>
 <?php
   render_footer();

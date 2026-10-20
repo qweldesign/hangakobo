@@ -22,16 +22,28 @@ require_once dirname(__DIR__) . '/helpers.php';
  *   image: OGP 画像 (規定で SITE_OGP_IMAGE)
  *   type: og:type (規定で article)
  *   noindex: 検索結果に出さない (404 など)
+ *   home: トップページか (ロゴを h1 にし, ナビをページ内の位置へのリンクにする)
+ *   preloader: 読み込み中の画面を出すか (js/preloader.js)
  */
 function render_header(array $page = []): void {
   $title = $page['full_title'] ?? (!empty($page['title']) ? $page['title'] . ' | ' . SITE_NAME : SITE_NAME);
   $description = ($page['description'] ?? '') ?: SITE_DESCRIPTION;
   $url = absolute_url($page['path'] ?? '');
   $image = absolute_url(($page['image'] ?? '') ?: SITE_OGP_IMAGE);
+  $home = !empty($page['home']);
+  $brandTag = $home ? 'h1' : 'div';
+  // body の属性 (読み込み中の画面, 右クリックの禁止)
+  $bodyAttrs = '';
+  if (!empty($page['preloader'])) {
+    $bodyAttrs .= ' class="preloader" data-background-color="' . e(SITE_PRELOADER_COLOR) . '"';
+  }
+  if (SITE_DISABLE_CONTEXT_MENU) {
+    $bodyAttrs .= ' oncontextmenu="return false;"';
+  }
   ?>
 <!DOCTYPE html>
 <html lang="<?= e(SITE_LANG) ?>">
-  <head>
+  <head prefix="og: https://ogp.me/ns#">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--
@@ -61,27 +73,54 @@ function render_header(array $page = []): void {
 <?php } ?>
     <link rel="stylesheet" href="<?= path('style.css') ?>">
     <link rel="icon" href="<?= path('favicon.ico') ?>">
+<?php if (SITE_GA_ID) { ?>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= e(SITE_GA_ID) ?>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '<?= e(SITE_GA_ID) ?>');
+    </script>
+<?php } ?>
   </head>
-  <body>
-    <header class="header">
-      <p id="logo" class="header__logo">
-        <a href="<?= e(SITE_LOGO_LINK ?: path()) ?>">
+  <body<?= $bodyAttrs ?>>
+    <header id="header" class="header" data-active-header>
+      <div class="header__inner">
+        <div id="gNav" class="gNav">
+          <<?= $brandTag ?> class="gNav__siteBrand" data-site-brand>
+            <a href="<?= e(SITE_LOGO_LINK ?: path()) ?>">
 <?php if (SITE_LOGO) { ?>
-          <img src="<?= path(SITE_LOGO) ?>" alt="<?= e(SITE_NAME) ?>">
+              <img src="<?= path(SITE_LOGO) ?>" alt="<?= e(SITE_LOGO_ALT ?: SITE_NAME) ?>">
 <?php } else { ?>
-          <?= e(SITE_NAME) ?>
+              <?= e(SITE_NAME) ?>
 <?php } ?>
-        </a>
-      </p>
+            </a>
+          </<?= $brandTag ?>>
 <?php if (SITE_NAV) { ?>
-      <nav class="header__nav" aria-label="グローバルナビゲーション">
-        <ul>
-<?php foreach (SITE_NAV as $navPath => $label) { ?>
-          <li><a href="<?= e(path($navPath)) ?>"><?= e($label) ?></a></li>
+          <ul class="gNav__primaryMenu" data-primary-menu>
+<?php foreach (SITE_NAV as $nav) { ?>
+            <li class="gNav__menuItem"><a href="<?= e($home && !empty($nav['anchor']) ? '#' . $nav['anchor'] : path($nav['path'])) ?>"><?= e($nav['label']) ?></a></li>
 <?php } ?>
-        </ul>
-      </nav>
+          </ul>
 <?php } ?>
+<?php if (SITE_SNS) { ?>
+          <ul class="gNav__socialMenu" data-social-menu>
+<?php foreach (SITE_SNS as $sns) { ?>
+<?php $external = (bool)preg_match('#^https?://#', $sns['url']); ?>
+            <li class="gNav__menuItem is-social">
+              <a href="<?= e(path($sns['url'])) ?>" aria-label="<?= e($sns['label']) ?>"<?= $external ? ' target="_blank" rel="noopener"' : '' ?>>
+                <svg class="icon is-<?= e(preg_replace('/^si-/', '', $sns['icon'] ?? '')) ?> is-md" width="36" height="36" aria-hidden="true">
+                  <use href="<?= path('icons.svg') ?>#<?= e($sns['icon'] ?? '') ?>"></use>
+                </svg>
+              </a>
+            </li>
+<?php } ?>
+          </ul>
+<?php } ?>
+        </div>
+      </div>
     </header>
 <?php
 }
@@ -89,32 +128,9 @@ function render_header(array $page = []): void {
 // フッター ~ </html> まで出力
 function render_footer(): void {
   ?>
+    <div class="cover"></div>
     <footer id="footer" class="footer">
-<?php if (SITE_FOOTER_LINKS) { ?>
-      <nav class="footer__nav" aria-label="サイト内のページ">
-        <ul>
-<?php foreach (SITE_FOOTER_LINKS as $linkPath => $label) { ?>
-          <li><a href="<?= e(path($linkPath)) ?>"><?= e($label) ?></a></li>
-<?php } ?>
-        </ul>
-      </nav>
-<?php } ?>
-<?php if (SITE_SNS) { ?>
-      <div class="footer__inner">
-<?php foreach (SITE_SNS as $sns) { ?>
-<?php $external = (bool)preg_match('#^https?://#', $sns['url']); ?>
-        <a class="footer__item" href="<?= e(path($sns['url'])) ?>"<?= $external ? ' target="_blank" rel="noopener"' : '' ?>>
-<?php if (!empty($sns['icon'])) { ?>
-          <svg class="icon is-md" width="36" height="36" aria-hidden="true">
-            <use href="<?= path('assets/icons.svg') ?>#<?= e($sns['icon']) ?>"></use>
-          </svg>
-<?php } ?>
-          <span><?= e($sns['label']) ?></span>
-        </a>
-<?php } ?>
-      </div>
-<?php } ?>
-      <small class="footer__copyright">&copy; <?= e(copyright_years()) ?> <?= e(SITE_OWNER) ?></small>
+      <div class="footer__copyright">&copy; <?= e(copyright_years()) ?> <?= e(SITE_OWNER) ?> All rights reserved.<?php if (SITE_COPYRIGHT_NOTE) { ?><br><?= SITE_COPYRIGHT_NOTE ?><?php } ?></div>
     </footer>
     <script src="<?= path('init.js') ?>" type="module"></script>
   </body>

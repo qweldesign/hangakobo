@@ -12,13 +12,17 @@
  *   index.php:         render_contact('form');
  *   confirm/index.php: render_contact('confirm');
  *   thanks/index.php:  render_contact('thanks');
+ * 入力画面をトップページのセクションなどに置く場合は, SITE_CONTACT の form_url を設定し,
+ * その場所で render_contact_form() を呼ぶ (index.php は form_url へ転送する)
  */
 
 require_once dirname(__DIR__) . '/partials/site.php';
 require_once dirname(__DIR__) . '/ContactForm.php';
 
 // お問い合わせフォームの各画面の URL ($step: '' (入力), 'confirm/', 'thanks/')
+// 入力画面は, form_url があればその URL
 function contact_url(string $step = ''): string {
+  if ($step === '' && !empty(SITE_CONTACT['form_url'])) return path(SITE_CONTACT['form_url']);
   return path(SITE_CONTACT['path'] . $step);
 }
 
@@ -26,6 +30,12 @@ function contact_url(string $step = ''): string {
  * $step: form (入力), confirm (確認), thanks (完了)
  */
 function render_contact(string $step): void {
+  // 入力画面を別の場所に置いている場合は, そこへ転送する
+  if ($step === 'form' && !empty(SITE_CONTACT['form_url'])) {
+    header('Location: ' . contact_url(), true, 301);
+    exit;
+  }
+
   $title = SITE_CONTACT['title'];
   $stepTitles = ['confirm' => '入力内容の確認', 'thanks' => '送信完了'];
   $stepTitle = $stepTitles[$step] ?? null;
@@ -45,8 +55,11 @@ function render_contact(string $step): void {
   ]);
 ?>
     <main id="main" class="main">
-      <?= $stepTitle ? $breadcrumb->breadcrumb(['title' => $stepTitle]) : $breadcrumb->breadcrumb() ?>
-      <h1 class="main__title"><?= e($stepTitle ?? $title) ?></h1>
+      <div class="main__container">
+        <header class="main__header">
+          <h1 class="main__title"><?= e($stepTitle ?? $title) ?></h1>
+        </header>
+        <?= $stepTitle ? $breadcrumb->breadcrumb(['title' => $stepTitle]) : $breadcrumb->breadcrumb() ?>
 <?php
   match ($step) {
     'confirm' => render_contact_confirm(),
@@ -54,29 +67,32 @@ function render_contact(string $step): void {
     default   => render_contact_form(),
   };
 ?>
+      </div>
     </main>
 <?php
   render_footer();
 }
 
-// 入力画面
+// 入力画面 (トップページのセクションなどからも呼べる)
 function render_contact_form(): void {
 ?>
 <?php if (!empty(SITE_CONTACT['lead'])) { ?>
-      <p class="main__lead"><?= SITE_CONTACT['lead'] ?></p>
+          <p class="text-center"><?= SITE_CONTACT['lead'] ?></p>
 <?php } ?>
-      <form class="form" data-contact-form data-confirm-url="<?= e(contact_url('confirm/')) ?>">
-        <table>
+          <form class="form" data-contact-form data-confirm-url="<?= e(contact_url('confirm/')) ?>">
+            <table class="form__table">
 <?php foreach (SITE_CONTACT_FIELDS as $name => $field) { ?>
 <?php render_contact_field($name, $field); ?>
 <?php } ?>
-        </table>
-        <div class="form__honeypot" aria-hidden="true">
-          <label for="contact-<?= ContactForm::HONEYPOT ?>">この欄は空のままにしてください</label>
-          <input id="contact-<?= ContactForm::HONEYPOT ?>" type="text" name="<?= ContactForm::HONEYPOT ?>" tabindex="-1" autocomplete="off">
-        </div>
-        <input type="submit" value="確認">
-      </form>
+            </table>
+            <div class="form__honeypot" aria-hidden="true">
+              <label for="contact-<?= ContactForm::HONEYPOT ?>">この欄は空のままにしてください</label>
+              <input id="contact-<?= ContactForm::HONEYPOT ?>" type="text" name="<?= ContactForm::HONEYPOT ?>" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="form__buttons">
+              <input class="button is-primary is-sm my-medium" type="submit" value="確認">
+            </div>
+          </form>
 <?php
 }
 

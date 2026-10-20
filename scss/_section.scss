@@ -1,0 +1,17 @@
+/**
+ * Project - Section
+ */
+
+.section {
+  margin-block-end: space("x-large");
+
+  &__container {
+    @include container();
+  }
+
+  &__title {
+    margin-block: space("medium");
+    border-block-end: 1px dotted theme-color("dark");
+    font-size: font-size("large");
+  }
+}

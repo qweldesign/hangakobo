@@ -11,11 +11,11 @@
 @mixin blockquote() {
   margin-block: $default-margin;
   padding-inline-start: 1em;
-  border-inline-start: space("x-small") solid $body-color;
+  border-inline-start: space("x-small") solid theme-color("light");
 
   p, cite {
     font-style: italic;
-    @include small-text();
+    //@include small-text();
   }
 }
 
