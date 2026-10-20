@@ -1,0 +1,12 @@
+/**
+ * Component - Image Guard
+ * 画像を簡単には保存できないようにする (body[data-protect-images]. js/image-guard.js と合わせて使う)
+ */
+
+[data-protect-images] {
+  img, canvas {
+    -webkit-user-drag: none; // Safari・Chrome のドラッグ
+    -webkit-touch-callout: none; // iOS の長押しメニュー (画像を保存)
+    user-select: none;
+  }
+}
