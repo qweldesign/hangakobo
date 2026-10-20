@@ -330,6 +330,18 @@ button, input, select, textarea {
 }
 
 /**
+ * Component - Image Guard
+ * 画像を簡単には保存できないようにする (body[data-protect-images]. js/image-guard.js と合わせて使う)
+ */
+[data-protect-images] img, [data-protect-images] canvas {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+/**
  * Component - Icon
  */
 .icon {

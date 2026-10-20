@@ -2,6 +2,10 @@
 import Preloader from './js/preloader.js';
 new Preloader();
 
+// Image Guard
+import ImageGuard from './js/image-guard.js';
+new ImageGuard();
+
 // Action Core
 import ActionCore from './js/action-core.js';
 new ActionCore.Preset();

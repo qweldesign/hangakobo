@@ -32,13 +32,13 @@ function render_header(array $page = []): void {
   $image = absolute_url(($page['image'] ?? '') ?: SITE_OGP_IMAGE);
   $home = !empty($page['home']);
   $brandTag = $home ? 'h1' : 'div';
-  // body の属性 (読み込み中の画面, 右クリックの禁止)
+  // body の属性 (読み込み中の画面, 画像の保護)
   $bodyAttrs = '';
   if (!empty($page['preloader'])) {
     $bodyAttrs .= ' class="preloader" data-background-color="' . e(SITE_PRELOADER_COLOR) . '"';
   }
-  if (SITE_DISABLE_CONTEXT_MENU) {
-    $bodyAttrs .= ' oncontextmenu="return false;"';
+  if (SITE_PROTECT_IMAGES) {
+    $bodyAttrs .= ' data-protect-images';
   }
   ?>
 <!DOCTYPE html>

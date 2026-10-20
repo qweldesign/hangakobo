@@ -28,8 +28,8 @@ const SITE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic
 const SITE_LANG = 'ja';
 // Google アナリティクスの測定 ID (不要なら空文字)
 const SITE_GA_ID = 'G-L7RBWQL4BZ';
-// 右クリックのメニューを出さない (画像の保存をしにくくする)
-const SITE_DISABLE_CONTEXT_MENU = true;
+// 画像を簡単には保存できないようにする (右クリックのメニュー, 画像のドラッグ, 長押しのメニューを止める. js/image-guard.js)
+const SITE_PROTECT_IMAGES = true;
 // 読み込み中の画面 (js/preloader.js) の背景色
 const SITE_PRELOADER_COLOR = 'hsl(45, 50%, 90%)';
 
