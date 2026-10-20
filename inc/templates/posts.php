@@ -14,6 +14,7 @@
  */
 
 require_once __DIR__ . '/postList.php';
+require_once __DIR__ . '/mediaText.php';
 
 /**
  * $type: 投稿タイプ (config.php の SITE_POST_TYPES のキー)
@@ -88,6 +89,11 @@ function render_posts(string $type, array $options = []): void {
           <article class="main__article">
 <?= $cms->get_content() ?>
           </article>
+<?php } ?>
+<?php if ($cms->get_meta('sections')) { ?>
+          <section class="main__section">
+<?php render_media_text(load_sections($cms->get_meta('sections'))); ?>
+          </section>
 <?php } ?>
 <?php } elseif ($cms->is_found()) { ?>
           <article class="main__article">
